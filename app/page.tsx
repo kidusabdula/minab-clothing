@@ -9,7 +9,7 @@ import RecommendedCover from "./components/Recommended/RecommendedCover";
 
 export default function Home() {
   return (
-    <div>
+    <div className="">
       <NavBar />
       <LandingCover />
       <ProductSection />

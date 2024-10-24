@@ -6,12 +6,17 @@
 body {
   @apply font-poppins;
 }
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: 'Poppins', 'sans-serif';
+  overflow-x: hidden;
 }
 
 @keyframes zoom {

@@ -6,14 +6,14 @@ type Props = {};
 const LandingCover = (props: Props) => {
   return (
     <div
-      className="w-full h-screen flex flex-col items-end justify-center p-5 animate-zoom"
+      className="w-full h-[100vh] flex flex-col items-end justify-center animate-zoom"
       style={{
         backgroundImage: 'url("/coverpic.png")',
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="w-4/12 flex flex-col items-end justify-center mt-72 p-10">
+      <div className="w-4/12 flex flex-col items-end justify-center mt-72 mb-32 p-10">
         <h1 className="text-[#F5F5F5] text-3xl text-right font-extralight mb-4">
           Where tradition meets contemporary. To celebrate and elevate Habesha
           culture through timeless, minimalist clothing

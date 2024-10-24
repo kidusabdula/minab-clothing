@@ -15,7 +15,7 @@ const Hero1 = (props: Props) => {
           backgroundPosition: "center",
         }}
       >
-        <h1 className="text-7xl text-white w-[50vw] mt-56 mb-10">
+        <h1 className="text-5xl text-white w-[40vw] mt-28 mb-10">
           We believe we can all make a difference.
         </h1>
         <h3 className="text-xl text-gray-300 w-[30vw] mt-5">
@@ -35,9 +35,15 @@ const Hero1 = (props: Props) => {
             important skill to have, everything else is a manifestation of
             that.”
           </h3>
-          <button className="bg-[#78866B] text-[#F5F5F5] text-xl px-6 py-3 rounded-full text-center my-20">
-            Explore More
-          </button>
+          <a
+            href="https://systemagazine.wordpress.com/2024/10/02/in-conversation-with-abiy-belay/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="bg-[#78866B] text-[#F5F5F5] text-xl px-6 py-3 rounded-full text-center my-20">
+              Read The Coversation On Minab
+            </button>
+          </a>
         </div>
         <div className="m-10 p-5">
           <Image
@@ -49,6 +55,19 @@ const Hero1 = (props: Props) => {
           />
         </div>
       </div>
+
+      <div
+        className="h-[210vh] w-[70vw] rounded-lg p-10 m-10"
+        style={{
+          backgroundImage: 'url("/IMG_5848.png")',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        {" "}
+        .
+      </div>
+
 
       <div className="flex flex-row mt-10">
         <div className="bg-[#78866B] text-white text-left">
