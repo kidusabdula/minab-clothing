@@ -76,10 +76,9 @@ const Hero1 = (props: Props) => {
             Designed To Last.
           </h1>
           <h3 className="text-lg font-extralight my-5 p-10">
-            At Everlane, we’re not big on trends. We want you to wear our pieces
+            At Minab, we’re not big on trends. We want you to wear our pieces
             for years, even decades, to come. That’s why we source the finest
-            materials and factories for our timeless products— like our Grade-A
-            cashmere sweaters, Italian shoes, and Peruvian Pima tees.
+            materials and factories for our timeless products.
           </h3>
         </div>
         <div

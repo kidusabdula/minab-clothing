@@ -8,7 +8,7 @@ interface Props {
 
 const ProductList = ({ products }: Props) => {
   return (
-    <div className="grid grid-cols-3 gap-20 p-5">
+    <div className="grid grid-cols-3 gap-40">
       {products && products.length > 0 ? (
         products.slice(0, 6).map((productItem) => (
           <div key={productItem.id}>

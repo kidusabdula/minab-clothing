@@ -8,7 +8,7 @@ const ContactForm = (props: Props) => {
       <div className="grid md:grid-cols-2 gap-16 items-center relative overflow-hidden p-8 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-3xl max-w-6xl mx-auto bg-white mt-4 font-[sans-serif] before:absolute before:right-0 before:w-[300px] before:bg-[#78866B] before:h-full max-md:before:hidden">
         <div>
           <h2 className="text-gray-800 text-3xl font-extrabold">
-            Get In Touch
+            Get In Touch With Us
           </h2>
           <p className="text-sm text-gray-500 mt-4 leading-relaxed">
             Have a specific inquiry or looking to explore new opportunities? Our
@@ -57,7 +57,7 @@ const ContactForm = (props: Props) => {
 
             <button
               type="button"
-              className="mt-8 flex items-center justify-center text-sm w-full rounded-md px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white"
+              className="mt-8 flex items-center justify-center text-sm w-full rounded-md px-6 py-3 bg-[#C0A080] hover:bg-black text-white"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +78,7 @@ const ContactForm = (props: Props) => {
           </form>
 
           <ul className="mt-4 flex flex-wrap justify-center gap-6">
-            <li className="flex items-center text-blue-600">
+            <li className="flex items-center text-gray-400">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16px"
@@ -92,7 +92,7 @@ const ContactForm = (props: Props) => {
                 <strong>info@example.com</strong>
               </a>
             </li>
-            <li className="flex items-center text-blue-600">
+            <li className="flex items-center text-gray-400">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16px"

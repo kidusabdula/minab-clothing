@@ -1,5 +1,6 @@
 import React from "react";
-import Image from "next/image"; // Ensure this line is present at the top of your file
+import Image from "next/image";
+import Link from "next/link";
 
 type Props = {};
 
@@ -18,9 +19,11 @@ const LandingCover = (props: Props) => {
           Where tradition meets contemporary. To celebrate and elevate Habesha
           culture through timeless, minimalist clothing
         </h1>
-        <button className="bg-[#78866B] text-[#F5F5F5] text-xl px-6 py-3 mt-5 rounded-full w-6/12">
-          Shop Now
-        </button>
+        <Link href={"/shop"} className="w-full flex justify-end items-end">
+          <button className="bg-[#78866B] text-[#F5F5F5] text-xl px-6 py-3 mt-5 rounded-full w-6/12 hover:bg-[#6B8757] hover:scale-105 transition duration-300 ease-in-out">
+            Shop Now
+          </button>
+        </Link>
       </div>
     </div>
   );

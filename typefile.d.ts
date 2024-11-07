@@ -7,6 +7,7 @@ export interface ProductGet{
     material: string;
     quantity: number;
     details: string;
+    dating: string;
 }
 
 export interface Category{

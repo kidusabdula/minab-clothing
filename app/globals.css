@@ -31,3 +31,12 @@ body {
 .animate-zoom {
   animation: zoom 2s ease-in-out forwards; /* Adjust duration as needed */
 }
+
+/* In your CSS file (e.g., globals.css or styles.css) */
+.zoom-out-hover {
+  transition: transform 0.3s ease;
+}
+
+.zoom-out-hover:hover {
+  transform: scale(0.9); /* Adjust scale as needed */
+}

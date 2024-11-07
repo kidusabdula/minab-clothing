@@ -11,7 +11,12 @@ const ProductCard = ({ id, product }: Props) => {
     <div
       key={id}
       id={id}
-      className="flex flex-row justify-between items-center align-middle p-5 w-[30vw]"
+      className="bg-gray-100 flex flex-row justify-between items-center align-middle p-5 my-10 w-[20vw] h-[70vh] rounded-2xl"
+      style={{
+        // backgroundImage: 'url("/IMG_2290.jpg")',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
       <div className="border-black m-5 p-5 w-max">
         <div id="top" className="">
@@ -27,7 +32,7 @@ const ProductCard = ({ id, product }: Props) => {
           id="bottom"
           className="flex flex-col items-center justify-center my-3"
         >
-          <h1 className="text-xl my-4 text-[#3A3A3A] text-center">{product.name}</h1>
+          <h1 className="text-xl my-4 text-gray-600 text-center">{product.name}</h1>
           <h3 className="text-[#7a8570] text-lg">Br {product.price}</h3>
         </div>
       </div>
