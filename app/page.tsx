@@ -3,6 +3,7 @@ import StickyFooter from "./components/Footer/StickyFooter";
 import Gallery from "./components/Gallery/Gallery";
 import IndividualProduct from "./components/IndividualProduct/IndividualProduct";
 import LandingCover from "./components/LandingCover/LandingCover";
+import LandingCover2 from "./components/LandingCover/LandingCover2";
 import NavBar from "./components/Navbar/NavBar";
 import ProductCard from "./components/Product/ProductCard";
 import ProductSection from "./components/Product/ProductSection";
@@ -15,6 +16,7 @@ export default function Home() {
       <NavBar />
       <LandingCover />
       <ProductSection />
+      <LandingCover2/>
       <RecommendedCover/>
       <Gallery/>
       <Footer/>

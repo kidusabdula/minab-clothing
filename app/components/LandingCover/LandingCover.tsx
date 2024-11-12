@@ -20,7 +20,7 @@ const LandingCover = (props: Props) => {
           culture through timeless, minimalist clothing
         </h1>
         <Link href={"/shop"} className="w-full flex justify-end items-end">
-          <button className="bg-[#78866B] text-[#F5F5F5] text-xl px-6 py-3 mt-5 rounded-full w-6/12 hover:bg-[#6B8757] hover:scale-105 transition duration-300 ease-in-out">
+          <button className="bg-[#78866B] text-[#F5F5F5] text-xl px-6 py-3 mt-5 rounded-lg w-6/12 hover:bg-[#6B8757] hover:scale-105 transition duration-300 ease-in-out">
             Shop Now
           </button>
         </Link>

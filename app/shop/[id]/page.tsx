@@ -7,7 +7,7 @@ import RecommendedCover from "../../components/Recommended/RecommendedCover";
 import Footer from "../../components/Footer/Footer";
 import { ProductGet } from "@/typefile";
 import { useParams } from "next/navigation";
-import { products } from "../../../dummyData"; // Directly import products
+import { products } from "../../../dummyData";
 
 const ProductPage = () => {
   const { id } = useParams();
