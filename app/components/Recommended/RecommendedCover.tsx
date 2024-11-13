@@ -1,8 +1,6 @@
 import React from "react";
 
-type Props = {};
-
-const RecommendedCover = (props: Props) => {
+const RecommendedCover : React.FC = () => {
   return (
     <div>
       <div id="header" className="flex flex-row gap-20 p-2 m-10">

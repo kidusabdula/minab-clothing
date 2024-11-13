@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
 
-type Props = {};
 
-const Footer = (props: Props) => {
+
+const Footer : React.FC = () => {
   return (
     <div>
       {/* component */}

@@ -1,8 +1,7 @@
 import React from "react";
 
-type Props = {};
 
-const StickyFooter = (props: Props) => {
+const StickyFooter : React.FC = () => {
   return (
     <div>
       <footer className="fixed bottom-0 left-0 w-full p-4 bg-white border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6 h-[1vh] opacity-55">

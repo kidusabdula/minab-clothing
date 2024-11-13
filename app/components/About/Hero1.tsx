@@ -2,9 +2,8 @@ import React from "react";
 import Image from "next/image";
 import RecommendedCover from "../Recommended/RecommendedCover";
 
-type Props = {};
 
-const Hero1 = (props: Props) => {
+const Hero1 : React.FC = () =>{
   return (
     <div className="flex flex-col justify-center items-center">
       <div

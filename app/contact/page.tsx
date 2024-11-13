@@ -4,9 +4,8 @@ import ContactForm from '../components/ContactUs/ContactForm'
 import StickyFooter from '../components/Footer/StickyFooter'
 import Footer from '../components/Footer/Footer'
 
-type Props = {}
 
-const ContactUs = (props: Props) => {
+const ContactUs : React.FC = () => {
   return (
     <div>
         <NavBar/>

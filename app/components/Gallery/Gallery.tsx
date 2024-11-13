@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
 
-type Props = {};
 
-const Gallery = (props: Props) => {
+
+const Gallery: React.FC = () => {
   return (
 <div className="grid grid-cols-2">
   <div>

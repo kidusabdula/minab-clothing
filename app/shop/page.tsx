@@ -4,9 +4,8 @@ import ShopSection from '../components/ShopSection/ShopSection'
 import ShopCover from '../components/ShopSection/ShopCover'
 import Footer from '../components/Footer/Footer'
 
-type Props = {}
 
-const Shop = (props: Props) => {
+const Shop: React.FC = () => {
   return (
     <div>
         <NavBar/>

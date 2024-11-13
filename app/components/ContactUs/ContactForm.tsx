@@ -1,8 +1,7 @@
 import React from "react";
 
-type Props = {};
 
-const ContactForm = (props: Props) => {
+const ContactForm : React.FC = () =>{
   return (
     <div className="mt-44">
       <div className="grid md:grid-cols-2 gap-16 items-center relative overflow-hidden p-8 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-3xl max-w-6xl mx-auto bg-white mt-4 font-[sans-serif] before:absolute before:right-0 before:w-[300px] before:bg-[#78866B] before:h-full max-md:before:hidden">

@@ -4,9 +4,9 @@ import { ProductGet } from '@/typefile'
 import React, { useEffect, useState } from 'react'
 import { products as productData } from '@/dummyData';
 import ShopProductList from './ShopProductList';
-type Props = {};
 
-const ShopSection = (props: Props) => {
+
+const ShopSection : React.FC = () => {
   const [products, setProducts] = useState<ProductGet[]>([]); 
 
   useEffect(() => {

@@ -1,8 +1,7 @@
 import React from "react";
 
-type Props = {};
 
-const ShopCover = (props: Props) => {
+const ShopCover : React.FC = () => {
   return (
     <div>
       <div className="flex flex-row justify-between items-center mt-20">

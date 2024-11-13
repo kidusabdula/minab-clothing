@@ -5,9 +5,8 @@ import React, { useEffect, useState } from 'react'
 import { products as productData } from '@/dummyData';
 import ProductList from './ProductList';
 
-type Props = {}
 
-const ProductSection = (props: Props) => {
+const ProductSection : React.FC = () => {
   const [products, setProducts] = useState<ProductGet[]>([]); 
   // const [categories, setCategories] = useState<Category[]>([]);
   // const [customers, setCustomers] = useState<Customer[]>([]);

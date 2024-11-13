@@ -1,10 +1,8 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 
-type Props = {};
 
-const LandingCover = (props: Props) => {
+const LandingCover : React.FC = () => {
   return (
     <div
       className="w-full h-[100vh] flex flex-col items-end justify-center animate-zoom"

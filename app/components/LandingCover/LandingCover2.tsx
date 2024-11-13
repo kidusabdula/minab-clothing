@@ -1,8 +1,8 @@
 import React from "react";
 
-type Props = {};
 
-const LandingCover2 = (props: Props) => {
+
+const LandingCover2 : React.FC = () => {
   return (
     <div className="my-5 px-6 py-12 flex flex-col justify-center align-middle" style={{
       backgroundImage: 'url("/IMG_5007.JPEG")',
