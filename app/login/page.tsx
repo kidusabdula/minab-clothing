@@ -1,3 +1,14 @@
+import React from 'react'
+
+const page : React.FC = () => {
+  return (
+    <div>page</div>
+  )
+}
+
+export default page
+
+
 // import React from "react";
 // import { useForm } from "react-hook-form";
 // import { yupResolver } from "@hookform/resolvers/yup";
