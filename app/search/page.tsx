@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import ShopProductList from "../components/ShopSection/ShopProductList";
 import { ProductGet } from "@/typefile";
 import NavBar from "../components/Navbar/NavBar";
 import { useSearchParams } from "next/navigation";
 import { products } from "../../dummyData";
 
-const Search = () => {
+const SearchContent = () => {
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("query"); // Get the query parameter from the URL
   const [searchResults, setSearchResults] = useState<ProductGet[]>([]);
@@ -27,6 +27,7 @@ const Search = () => {
       }
     }
   }, [searchQuery]);
+
   return (
     <div>
       <NavBar />{" "}
@@ -43,5 +44,11 @@ const Search = () => {
     </div>
   );
 };
+
+const Search = () => (
+  <Suspense fallback={<div>Loading search results...</div>}>
+    <SearchContent />
+  </Suspense>
+);
 
 export default Search;
