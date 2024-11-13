@@ -1,12 +1,14 @@
 'use client';
 
-import React, { useEffect, useState, Suspense } from "react";
+import dynamic from 'next/dynamic';
+import React, { useEffect, useState } from "react";
 import ShopProductList from "../components/ShopSection/ShopProductList";
 import { ProductGet } from "@/typefile";
 import NavBar from "../components/Navbar/NavBar";
 import { useSearchParams } from "next/navigation";
 import { products } from "../../dummyData";
 
+// Ensure client-side only rendering
 const SearchContent = () => {
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("query"); // Get the query parameter from the URL
@@ -30,7 +32,7 @@ const SearchContent = () => {
 
   return (
     <div>
-      <NavBar />{" "}
+      <NavBar />
       <div className="p-5 m-5 mt-32">
         <h1>Search Results for: {searchQuery}</h1>
         {errorMessage ? (
@@ -45,10 +47,7 @@ const SearchContent = () => {
   );
 };
 
-const Search = () => (
-  <Suspense fallback={<div>Loading search results...</div>}>
-    <SearchContent />
-  </Suspense>
-);
+// Dynamically import SearchContent to avoid SSR
+const Search = dynamic(() => Promise.resolve(SearchContent), { ssr: false });
 
 export default Search;
