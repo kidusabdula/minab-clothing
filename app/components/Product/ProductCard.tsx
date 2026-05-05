@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image"; // Ensure this line is present at the top of your file
-import { ProductGet } from "@/typefile";
+import { Product } from "@/typefile";
 
 interface Props {
-  product: ProductGet;
+  product: Product;
   id: string;
 }
 const ProductCard = ({ id, product }: Props) => {

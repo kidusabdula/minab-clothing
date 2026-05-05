@@ -1,9 +1,9 @@
-import { ProductGet } from "@/typefile";
+import { Product } from "@/typefile";
 import React from "react";
 import ProductCard from "./ProductCard";
 
 interface Props {
-  products: ProductGet[];
+  products: Product[];
 }
 
 const ProductList = ({ products }: Props) => {

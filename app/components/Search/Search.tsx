@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ShopProductList from "../ShopSection/ShopProductList";
-import { ProductGet } from "@/typefile";
+import { Product } from "@/typefile";
 import NavBar from "../Navbar/NavBar";
 import { useSearchParams } from "next/navigation";
 import { products } from "../../../dummyData";
@@ -8,7 +8,7 @@ import { products } from "../../../dummyData";
 const Search = () => {
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("query"); // Get the query parameter from the URL
-  const [searchResults, setSearchResults] = useState<ProductGet[]>([]);
+  const [searchResults, setSearchResults] = useState<Product[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {

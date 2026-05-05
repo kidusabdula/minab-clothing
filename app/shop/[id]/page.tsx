@@ -1,39 +1,16 @@
-"use client";
+import { products } from "@/dummyData";
+import ProductDetail from "./product-detail";
 
-import React, { useEffect, useState } from "react";
-import IndividualProduct from "../../components/IndividualProduct/IndividualProduct";
-import NavBar from "../../components/Navbar/NavBar";
-import RecommendedCover from "../../components/Recommended/RecommendedCover";
-import Footer from "../../components/Footer/Footer";
-import { ProductGet } from "@/typefile";
-import { useParams } from "next/navigation";
-import { products } from "../../../dummyData";
+export function generateStaticParams() {
+  return products.map((p) => ({ id: p.slug }));
+}
 
-const ProductPage = () => {
-  const { id } = useParams();
-  const [product, setProduct] = useState<ProductGet | null>(null);
+export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const product = products.find((p) => p.slug === id);
+  const relatedProducts = product
+    ? products.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 4)
+    : [];
 
-  useEffect(() => {
-    if (id) {
-      const foundProduct = products.find(
-        (product: ProductGet) => product.id === Number(id)
-      );
-      setProduct(foundProduct || null);
-    }
-  }, [id]);
-
-  if (!product) {
-    return <p>Product not found.</p>;
-  }
-
-  return (
-    <div>
-      <NavBar />
-      <IndividualProduct product={product} />
-      <RecommendedCover />
-      <Footer />
-    </div>
-  );
-};
-
-export default ProductPage;
+  return <ProductDetail product={product || null} relatedProducts={relatedProducts} />;
+}

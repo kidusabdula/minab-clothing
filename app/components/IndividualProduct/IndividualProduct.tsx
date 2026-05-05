@@ -4,10 +4,10 @@ import React from "react";
 import Image from "next/image";
 import { useState } from "react";
 import { FaTruckFast } from "react-icons/fa6";
-import { ProductGet } from "@/typefile";
+import { Product } from "@/typefile";
 
 interface Props{
-  product: ProductGet;
+  product: Product;
 }
 
 

@@ -1,13 +1,13 @@
 "use client";
 
-import { ProductGet } from '@/typefile'
+import { Product } from '@/typefile'
 import React, { useEffect, useState } from 'react'
 import { products as productData } from '@/dummyData';
 import ProductList from './ProductList';
 
 
 const ProductSection : React.FC = () => {
-  const [products, setProducts] = useState<ProductGet[]>([]); 
+  const [products, setProducts] = useState<Product[]>([]); 
   // const [categories, setCategories] = useState<Category[]>([]);
   // const [customers, setCustomers] = useState<Customer[]>([]);
 

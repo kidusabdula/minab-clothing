@@ -1,10 +1,10 @@
-import { ProductGet } from "@/typefile";
+import { Product } from "@/typefile";
 import React from "react";
 import ProductCard from "../Product/ProductCard";
 import Link from "next/link";
 
 interface Props {
-  products: ProductGet[];
+  products: Product[];
 }
 const ShopProductList = ({ products }: Props) => {
   return (
