@@ -17,7 +17,7 @@ const values = [
   {
     icon: Users,
     title: "Artisan-First",
-    text: "We work directly with over 200 artisan families, ensuring fair wages, safe working conditions, and the preservation of traditional techniques.",
+    text: "We work directly with local artisan families, paying fair wages and keeping traditional techniques alive.",
   },
   {
     icon: Award,
@@ -27,7 +27,7 @@ const values = [
   {
     icon: Heart,
     title: "Community",
-    text: "5% of every purchase goes toward education and vocational training programs in the communities where our artisans live and work.",
+    text: "We support education and vocational training in the communities where our artisans live and work.",
   },
 ];
 
@@ -48,15 +48,17 @@ export default function AboutPage() {
                 </h1>
                 <p className="text-muted-foreground mt-6 leading-relaxed text-lg">
                   Minab was born in the heart of Addis Ababa with a simple mission: to bring
-                  Ethiopian craftsmanship to the global stage. What started as a small workshop in
-                  2018 has grown into a movement — connecting traditional artisans with contemporary
+                  Ethiopian craftsmanship to the global stage. What started as a small workshop has grown into a movement — connecting traditional artisans with contemporary
                   design, creating pieces that honor heritage while embracing the future.
                 </p>
                 <p className="text-muted-foreground mt-4 leading-relaxed">
-                  Our name, &ldquo;Minab,&rdquo; means &ldquo;thread&rdquo; in Amharic — a reminder that the strongest
-                  fabrics are woven from many strands. Every garment we create represents the
+                  Every garment we create represents the
                   coming together of master weavers, dyers, tailors, and designers, each
                   contributing their expertise to a shared vision of excellence.
+                </p>
+                <p className="mt-6 rounded-xl border border-border bg-muted/50 px-4 py-3 text-sm text-muted-foreground">
+                  Sample copy written for this demo storefront. It isn&rsquo;t the label&rsquo;s own
+                  story, and it makes no claims about the real brand.
                 </p>
               </motion.div>
 

@@ -169,6 +169,7 @@ export default function ShopPage() {
                         onChange={(e) => setPriceRange([Number(e.target.value), priceRange[1]])}
                         className="w-full h-9 px-2 rounded-lg border border-border bg-background text-sm text-foreground outline-none focus:ring-2 focus:ring-ring"
                         placeholder="Min"
+                        aria-label="Minimum price"
                       />
                       <span className="text-muted-foreground self-center">-</span>
                       <input
@@ -177,6 +178,7 @@ export default function ShopPage() {
                         onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])}
                         className="w-full h-9 px-2 rounded-lg border border-border bg-background text-sm text-foreground outline-none focus:ring-2 focus:ring-ring"
                         placeholder="Max"
+                        aria-label="Maximum price"
                       />
                     </div>
                   </div>
@@ -207,6 +209,7 @@ export default function ShopPage() {
                   {filteredProducts.length} product{filteredProducts.length !== 1 ? "s" : ""} found
                 </p>
                 <select
+                  aria-label="Sort products"
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
                   className="h-9 px-3 rounded-lg border border-border bg-background text-sm text-foreground outline-none focus:ring-2 focus:ring-ring cursor-pointer"

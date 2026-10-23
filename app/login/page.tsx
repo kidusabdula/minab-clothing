@@ -16,7 +16,7 @@ export default function LoginPage() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Welcome back, Selam!", { description: "Redirecting to your account..." });
+    toast.success("Welcome back (demo login)", { description: "Redirecting to your account..." });
   };
 
   return (
@@ -43,7 +43,7 @@ export default function LoginPage() {
                     label="Email"
                     type="email"
                     placeholder="your@email.com"
-                    defaultValue="selam@example.com"
+                    defaultValue="demo@example.com"
                     required
                   />
                   <div className="relative">

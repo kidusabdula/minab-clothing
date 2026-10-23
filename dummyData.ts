@@ -1,4 +1,4 @@
-import { Product, Category, Collection, Testimonial, Order, Address } from "./typefile";
+import { Product, Category, Collection, Order, Address } from "./typefile";
 
 export const collections: Collection[] = [
   {
@@ -323,44 +323,6 @@ export const products: Product[] = [
   },
 ];
 
-export const testimonials: Testimonial[] = [
-  {
-    id: "1",
-    name: "Selam Tesfaye",
-    role: "Fashion Editor, Addis Life",
-    content: "Minab is redefining Ethiopian fashion. The craftsmanship is extraordinary — every piece tells a story. The Habesha Kemis I ordered was beyond my expectations.",
-    rating: 5,
-  },
-  {
-    id: "2",
-    name: "Meron Bekele",
-    role: "Fashion Influencer",
-    content: "I've ordered from luxury brands worldwide, and Minab's quality stands shoulder to shoulder with the best. The attention to detail in the stitching and fabric selection is remarkable.",
-    rating: 5,
-  },
-  {
-    id: "3",
-    name: "Daniel Worku",
-    role: "CEO, Tech Ventures",
-    content: "The Entoto Leather Jacket is now my go-to for both client meetings and casual outings. The leather quality is exceptional and it only gets better with age.",
-    rating: 4,
-  },
-  {
-    id: "4",
-    name: "Hanna Girma",
-    role: "Architect",
-    content: "I discovered Minab at a pop-up and haven't looked back. The Tana Floral Maxi is the most complimented piece in my wardrobe. Sustainable, ethical, and absolutely stunning.",
-    rating: 5,
-  },
-  {
-    id: "5",
-    name: "Yonas Tadesse",
-    role: "Creative Director",
-    content: "Finally, a brand that understands the intersection of Ethiopian heritage and contemporary design. The Merkato Tote bag is both practical and a conversation starter.",
-    rating: 4,
-  },
-];
-
 export const mockOrders: Order[] = [
   {
     id: "MIN-2026-001",
@@ -421,33 +383,33 @@ export const mockAddresses: Address[] = [
   {
     id: "addr-1",
     label: "Home",
-    fullName: "Selam Tesfaye",
+    fullName: "Demo Customer",
     street: "Bole Road, House 42",
     city: "Addis Ababa",
     state: "Addis Ababa",
     zip: "1000",
     country: "Ethiopia",
-    phone: "+251 91 123 4567",
+    phone: "+251 9XX XXX XXX",
     isDefault: true,
   },
   {
     id: "addr-2",
     label: "Office",
-    fullName: "Selam Tesfaye",
+    fullName: "Demo Customer",
     street: "Africa Avenue, 8th Floor",
     city: "Addis Ababa",
     state: "Addis Ababa",
     zip: "1000",
     country: "Ethiopia",
-    phone: "+251 91 987 6543",
+    phone: "+251 9XX XXX XXX",
     isDefault: false,
   },
 ];
 
 export const mockUser = {
   id: "user-1",
-  name: "Selam Tesfaye",
-  email: "selam@example.com",
+  name: "Demo Customer",
+  email: "demo@example.com",
   avatar: undefined,
   orders: mockOrders,
   wishlist: ["1", "7", "11"],

@@ -74,24 +74,6 @@ export function Hero() {
               Our Story
             </Link>
           </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-16 grid grid-cols-3 gap-8 max-w-md"
-          >
-            {[
-              { value: "200+", label: "Artisan Partners" },
-              { value: "50K+", label: "Happy Customers" },
-              { value: "15+", label: "Countries Shipped" },
-            ].map((stat, i) => (
-              <div key={i}>
-                <div className="text-2xl font-bold text-foreground">{stat.value}</div>
-                <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
-              </div>
-            ))}
-          </motion.div>
         </div>
       </div>
     </section>

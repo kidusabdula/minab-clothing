@@ -5,7 +5,6 @@ import Footer from "./components/shared/footer";
 import { Hero } from "./components/home/hero";
 import { ProductCard } from "./components/home/product-card";
 import { CollectionsShowcase } from "./components/home/collections-showcase";
-import { Testimonials } from "./components/home/testimonials";
 import { CTA } from "./components/home/cta";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -88,7 +87,6 @@ export default function Home() {
         </div>
       </section>
 
-      <Testimonials />
       <CTA />
       <Footer />
     </div>

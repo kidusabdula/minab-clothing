@@ -12,11 +12,11 @@ const poppins = Poppins({
 
 export const metadata = {
   title: {
-    default: "Minab Clothing — Premium Ethiopian Fashion",
-    template: "%s | Minab Clothing",
+    default: "Minab Clothing Demo Storefront",
+    template: "%s | Minab Clothing Demo",
   },
-  description: "Discover premium Ethiopian fashion and clothing. Handcrafted designs, modern styles, and timeless elegance.",
-  keywords: ["Ethiopian clothing", "fashion", "Minab", "premium clothing", "traditional wear", "modern fashion"],
+  description: "A storefront demo for an Addis Ababa clothing label: sample products, cart and checkout. Not the label's official shop.",
+  keywords: ["Ethiopian clothing", "fashion", "Minab", "storefront demo", "Next.js"],
 };
 
 export default function RootLayout({

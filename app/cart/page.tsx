@@ -215,6 +215,7 @@ export default function CartPage() {
                         value={promoCode}
                         onChange={(e) => setPromoCode(e.target.value)}
                         placeholder="Promo code"
+                        aria-label="Promo code"
                         className="flex-1 h-10 px-3 rounded-lg border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-ring"
                       />
                       <Button variant="outline" size="sm">

@@ -26,8 +26,8 @@ export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState<string>("card");
 
   const handlePlaceOrder = () => {
-    toast.success("Order placed successfully!", {
-      description: "Redirecting to order confirmation...",
+    toast.success("Demo order placed", {
+      description: "Nothing was charged. Redirecting to the demo confirmation...",
     });
     setTimeout(() => {
       window.location.href = "/checkout/success";
@@ -47,7 +47,7 @@ export default function CheckoutPage() {
             <h1 className="text-4xl sm:text-5xl font-bold text-foreground">Checkout</h1>
           </motion.div>
 
-          <div className="flex items-center gap-4 mb-12">
+          <div className="flex items-center gap-2 sm:gap-4 mb-12">
             {steps.map((step, i) => (
               <div key={step} className="flex items-center gap-2">
                 <div
@@ -67,7 +67,7 @@ export default function CheckoutPage() {
                   {step}
                 </span>
                 {i < steps.length - 1 && (
-                  <div className="w-12 h-px bg-border mx-2" />
+                  <div className="hidden sm:block w-12 h-px bg-border mx-2" />
                 )}
               </div>
             ))}
@@ -150,16 +150,10 @@ export default function CheckoutPage() {
                     </button>
                   ))}
 
-                  {paymentMethod === "card" && (
-                    <Card variant="glass" className="p-4 space-y-4">
-                      <Input label="Card Number" placeholder="1234 5678 9012 3456" />
-                      <div className="grid grid-cols-2 gap-4">
-                        <Input label="Expiry" placeholder="MM/YY" />
-                        <Input label="CVC" placeholder="123" />
-                      </div>
-                      <Input label="Cardholder Name" placeholder="Name on card" />
-                    </Card>
-                  )}
+                  <p className="rounded-xl border border-border bg-muted/50 px-4 py-3 text-sm text-muted-foreground">
+                    Demo checkout: no payment is taken and no card details are requested. Pick a
+                    method to see the next step.
+                  </p>
                 </motion.div>
               )}
 

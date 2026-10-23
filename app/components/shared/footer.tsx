@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Camera, Globe, MonitorPlay, Mail, MapPin, Phone } from "lucide-react";
+import { MapPin } from "lucide-react";
 
 const footerLinks = {
   shop: [
@@ -13,8 +13,6 @@ const footerLinks = {
   company: [
     { label: "About Us", href: "/about" },
     { label: "Contact", href: "/contact" },
-    { label: "Careers", href: "#" },
-    { label: "Press", href: "#" },
   ],
   help: [
     { label: "FAQ", href: "/faq" },
@@ -34,23 +32,9 @@ export default function Footer() {
               MINAB
             </Link>
             <p className="mt-4 text-muted-foreground leading-relaxed max-w-sm">
-              Premium Ethiopian fashion house crafting contemporary designs rooted in heritage. Each piece tells a story of artistry, sustainability, and timeless elegance.
+              A storefront demo for an Addis Ababa clothing label. Products, prices, orders and
+              policies shown here are sample data, and nothing is sold through this site.
             </p>
-            <div className="flex gap-2 mt-6">
-              {[
-                { icon: Camera, href: "#" },
-                { icon: Globe, href: "#" },
-                { icon: MonitorPlay, href: "#" },
-              ].map((social, i) => (
-                <a
-                  key={i}
-                  href={social.href}
-                  className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent transition-all duration-200"
-                >
-                  <social.icon className="w-5 h-5" />
-                </a>
-              ))}
-            </div>
           </div>
 
           {Object.entries(footerLinks).map(([title, links]) => (
@@ -76,18 +60,12 @@ export default function Footer() {
 
         <div className="mt-16 pt-8 border-t border-border">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <MapPin className="w-4 h-4" />
+            <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-muted-foreground">
+              <MapPin aria-hidden="true" className="w-4 h-4" />
               <span>Addis Ababa, Ethiopia</span>
-              <span className="mx-2">•</span>
-              <Mail className="w-4 h-4" />
-              <a href="mailto:hello@minab.co" className="hover:text-foreground transition-colors">hello@minab.co</a>
-              <span className="mx-2">•</span>
-              <Phone className="w-4 h-4" />
-              <span>+251 91 123 4567</span>
             </div>
-            <p className="text-sm text-muted-foreground">
-              &copy; {new Date().getFullYear()} Minab Clothing. All rights reserved.
+            <p className="text-sm text-muted-foreground text-center sm:text-right">
+              Demo storefront. Not the label&rsquo;s official shop.
             </p>
           </div>
         </div>

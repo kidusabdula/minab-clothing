@@ -75,6 +75,7 @@ export function CTA() {
                 <input
                   type="email"
                   placeholder="your@email.com"
+                  aria-label="Email address"
                   className="flex-1 h-12 px-4 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-ring transition-all duration-200"
                 />
                 <button

@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     q: "Do you ship internationally?",
-    a: "Yes! We ship to over 15 countries including the US, UK, Canada, UAE, Kenya, and across the EU. International shipping costs are calculated at checkout.",
+    a: "Yes. International shipping costs are calculated at checkout.",
   },
   {
     q: "How do I find the right size?",
@@ -28,7 +28,7 @@ const faqs = [
   },
   {
     q: "Can I customize or order made-to-measure?",
-    a: "Yes, select items (like the Habesha Kemis) are made-to-measure. Contact us at custom@minab.co for bespoke orders and customization requests.",
+    a: "Yes, select items (like the Habesha Kemis) are made-to-measure. Use the contact page for bespoke orders and customization requests.",
   },
   {
     q: "What payment methods do you accept?",
@@ -51,6 +51,10 @@ export default function FAQPage() {
             <p className="text-muted-foreground mt-2 text-lg">
               Everything you need to know about Minab.
             </p>
+            <p className="mt-4 rounded-xl border border-border bg-muted/50 px-4 py-3 text-sm text-muted-foreground">
+              Demo copy: the shipping, returns and payment policies below are sample text for this
+              storefront demo, not the label&rsquo;s real policies.
+            </p>
           </motion.div>
 
           <div className="space-y-3">
@@ -62,9 +66,9 @@ export default function FAQPage() {
                 transition={{ delay: i * 0.05 }}
                 className="group glass rounded-2xl p-1 cursor-pointer"
               >
-                <summary className="flex items-center justify-between px-5 py-4 text-foreground font-medium list-none">
+                <summary className="flex items-center justify-between gap-4 px-5 py-4 text-foreground font-medium list-none rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                   {faq.q}
-                  <ChevronDown className="w-5 h-5 text-muted-foreground transition-transform duration-300 group-open:rotate-180" />
+                  <ChevronDown aria-hidden="true" className="w-5 h-5 shrink-0 text-muted-foreground transition-transform duration-300 group-open:rotate-180" />
                 </summary>
                 <div className="px-5 pb-4 pt-0">
                   <p className="text-sm text-muted-foreground leading-relaxed">{faq.a}</p>

@@ -68,8 +68,8 @@ export default function AccountPage() {
                       <User className="w-8 h-8 text-primary" />
                     </div>
                     <div>
-                      <h2 className="text-xl font-bold text-foreground">Selam Tesfaye</h2>
-                      <p className="text-muted-foreground">selam@example.com</p>
+                      <h2 className="text-xl font-bold text-foreground">Demo Customer</h2>
+                      <p className="text-muted-foreground">demo@example.com</p>
                       <p className="text-sm text-muted-foreground mt-1">Member since January 2025</p>
                     </div>
                   </CardContent>

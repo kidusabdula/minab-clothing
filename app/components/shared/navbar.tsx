@@ -52,12 +52,21 @@ export default function NavBar() {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-          scrolled
-            ? "glass-strong shadow-lg py-2"
-            : "bg-transparent py-4"
+          scrolled ? "glass-strong shadow-lg" : "bg-transparent"
         )}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p className="bg-foreground text-background text-xs leading-4 font-medium py-1 px-4 text-center">
+          <span className="md:hidden">Demo storefront &middot; sample data</span>
+          <span className="hidden md:inline">
+            Demo storefront: not Minab&rsquo;s official shop. Products, prices and policies are sample data.
+          </span>
+        </p>
+        <div
+          className={cn(
+            "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-500",
+            scrolled ? "py-1" : "py-1.5"
+          )}
+        >
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2 group">
               <div className="relative w-10 h-10 overflow-hidden rounded-xl">
@@ -170,8 +179,9 @@ export default function NavBar() {
             >
               <form onSubmit={handleSearch} className="glass-strong rounded-2xl p-2 shadow-2xl">
                 <div className="flex items-center gap-3 px-4">
-                  <Search className="w-5 h-5 text-muted-foreground" />
+                  <Search aria-hidden="true" className="w-5 h-5 text-muted-foreground" />
                   <input
+                    aria-label="Search products"
                     type="text"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
@@ -182,6 +192,7 @@ export default function NavBar() {
                   <button
                     type="button"
                     onClick={() => setSearchOpen(false)}
+                    aria-label="Close search"
                     className="text-muted-foreground hover:text-foreground p-2"
                   >
                     <X className="w-5 h-5" />

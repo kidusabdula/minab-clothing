@@ -30,10 +30,10 @@ export default function OrderSuccess() {
             transition={{ delay: 0.3 }}
           >
             <h1 className="text-3xl sm:text-4xl font-bold text-foreground">
-              Order Confirmed!
+              Demo Order Confirmed
             </h1>
             <p className="text-muted-foreground mt-3 text-lg">
-              Thank you for your purchase. Your order has been placed successfully.
+              This is a demo: no order was placed and nothing was charged.
             </p>
           </motion.div>
 
