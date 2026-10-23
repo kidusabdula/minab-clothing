@@ -1,12 +1,12 @@
-# Minab Clothing — Premium Ethiopian Fashion E-Commerce
+# Minab Clothing — Storefront Demo
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-Proprietary-lightgrey.svg)](#-license)
 [![Node.js Version](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
 [![Next.js Version](https://img.shields.io/badge/Next.js-15+-black.svg)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5+-blue.svg)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4+-06B6D4.svg)](https://tailwindcss.com/)
 
-> **Minab Clothing** is a premium Ethiopian fashion brand showcasing contemporary designs rooted in heritage craftsmanship. This e-commerce web application delivers a complete shopping experience — from product discovery through checkout — with a polished, gallery-worthy UI designed for product studio demonstrations.
+> A storefront demo built around **Minab**, a clothing label from Addis Ababa. It walks through a complete shopping flow — from product discovery through checkout — on mock data. It isn't the label's official shop: products, prices, orders and policies are sample data, and no payment is taken.
 
 ## 🌟 Key Features
 
@@ -15,7 +15,8 @@
 - **Product Detail Pages**: Full specifications, color/size selection, image galleries
 - **Shopping Cart**: Quantity controls, promo codes, real-time totals
 - **3-Step Checkout**: Shipping → Payment → Review with order confirmation
-- **Mock E-Commerce Flow**: Fully functional UI demo flow from browse to purchase
+- **Mock E-Commerce Flow**: Fully functional UI demo flow from browse to purchase; the checkout takes no payment and asks for no card details
+- **Demo Labelling**: Every page carries a visible "Demo storefront" label
 
 ### User Account Features
 - **Dashboard**: Order overview, quick stats, recent activity
@@ -31,11 +32,11 @@
 - **Sonner Toasts**: Elegant notification system for cart, checkout, and form actions
 
 ### Brand Content
-- **Home Page**: Hero section, featured products, collection showcases, testimonials, newsletter CTA
+- **Home Page**: Hero section, featured products, collection showcases, newsletter CTA
 - **Collections**: Curated seasonal collections with dedicated landing pages
-- **About Page**: Brand story, values (sustainability, artisan-first, craftsmanship, community)
-- **FAQ**: Interactive accordion with shipping, returns, sizing, and care information
-- **Contact**: Form with store location, hours, and contact details
+- **About Page**: Sample brand story and values, labelled as demo copy
+- **FAQ**: Interactive accordion with sample shipping, returns, sizing, and care copy, labelled as demo copy
+- **Contact**: Demo form with placeholder contact details
 
 ## 🎨 Design System
 
@@ -64,14 +65,14 @@
 
 ## 🏗️ Architecture Overview
 
-Minab follows the **Extreme Modularization** pattern with clear component boundaries:
+Minab keeps components in small folders with clear boundaries:
 
 ```
 app/
 ├── components/
 │   ├── ui/               # Primitives (Button, Card, Input, Badge)
 │   ├── shared/           # Shared (NavBar, Footer)
-│   └── home/             # Home page sections (Hero, ProductCard, Collections, Testimonials, CTA)
+│   └── home/             # Home page sections (Hero, ProductCard, Collections, CTA)
 ├── account/              # Tier 2: Customer account area
 │   ├── orders/           # Order history
 │   ├── wishlist/         # Saved items
@@ -104,14 +105,13 @@ app/
 
 | Layer | Technology | Version | Purpose |
 |-------|------------|---------|---------|
-| **Framework** | Next.js | 15.5 | App Router, SSR/SSG, API routes |
-| **Language** | TypeScript | 5.8 | Strict mode, full type safety |
+| **Framework** | Next.js | 15.5 | App Router, statically generated product and collection pages (no API routes) |
+| **Language** | TypeScript | 5.9 | Strict mode, full type safety |
 | **Styling** | Tailwind CSS | 3.4 | Utility-first, OKLCH tokens |
 | **UI Primitives** | Custom (Radix-inspired) | — | Accessible, unstyled, composable |
-| **Animations** | Framer Motion | 12.3 | Spring animations, layout transitions |
+| **Animations** | Framer Motion | 12.38 | Spring animations, layout transitions |
 | **Icons** | Lucide React | 1.14 | Consistent stroke, tree-shakeable |
-| **Forms** | React Hook Form | 7.55 | Performant form management |
-| **Validation** | Yup + Zod | — | Schema + runtime validation |
+| **Forms** | React state | — | Login, signup, checkout and contact forms use plain React state |
 | **Notifications** | Sonner | 2.0 | Toast notifications |
 | **Utilities** | clsx + tailwind-merge | — | Conditional class merging |
 
@@ -125,7 +125,7 @@ app/
 
 1. **Clone and Install**
    ```bash
-   git clone https://github.com/VersaLabs/minab-clothing.git
+   git clone https://github.com/kidusabdula/minab-clothing.git
    cd minab-clothing
    npm install
    ```
@@ -186,11 +186,11 @@ minab-clothing/
 ## 📊 E-Commerce Flow
 
 ### Browse → Purchase
-1. **Home** → Discover featured products, collections, testimonials
+1. **Home** → Discover featured products and collections
 2. **Shop** → Filter by category, collection, price; sort by featured/newest/price/rating
 3. **Product Detail** → View images, select color/size, read details, add to cart
 4. **Cart** → Adjust quantities, apply promo code (MINAB20), review totals
-5. **Checkout** → Select address, choose payment method (card/telebirr), review order
+5. **Checkout** → Select address, choose a payment method (demo only: nothing is charged), review order
 6. **Confirmation** → Order number, tracking, estimated delivery
 
 ### Account Management
@@ -222,7 +222,7 @@ All colors use the **OKLCH** color model — perceptually uniform, accessible, a
 
 - **[Architecture](./ARCHITECTURAL_DNA.md)** — Kidus Abdula's architectural methodology and design philosophy
 - **[Type Definitions](./typefile.d.ts)** — All TypeScript interfaces and types
-- **[Mock Data](./dummyData.ts)** — Product catalog, collections, orders, testimonials
+- **[Mock Data](./dummyData.ts)** — Product catalog, collections, orders
 
 ## 🤝 Contributing
 
@@ -244,13 +244,11 @@ This project is proprietary software developed by Kidus Abdula. All rights reser
 
 ## 🏢 About
 
-Minab Clothing is a premium Ethiopian fashion brand. The name "Minab" means "thread" in Amharic — a reminder that the strongest fabrics are woven from many strands. This web application showcases the brand's digital presence with a focus on craftsmanship, storytelling, and enterprise-grade UI design.
+Minab is a clothing label from Addis Ababa. This web app is a storefront demo built around the brand: products, orders, reviews and contact details are mock data (`dummyData.ts`).
 
-### Contact Information
-- **Email**: hello@minab.co
-- **Phone**: +251 91 123 4567
-- **Location**: Addis Ababa, Ethiopia
+### Demo Contact Details
+- The email, phone number and address shown in the app are placeholders, not Minab's real contact details.
 
 ---
 
-**Built with ❤️ by Kidus Abdula** | **Premium Ethiopian Fashion** | **Enterprise-Grade UI Architecture**
+**Built with ❤️ by Kidus Abdula** | **Storefront demo** | **Next.js 15 · Tailwind CSS · Framer Motion**
