@@ -117,7 +117,7 @@ export default function NavBar() {
 
               <Link
                 href="/account/wishlist"
-                className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-all duration-200"
+                className="hidden sm:inline-flex p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-all duration-200"
                 aria-label="Wishlist"
               >
                 <Heart className="w-5 h-5" />
@@ -125,7 +125,7 @@ export default function NavBar() {
 
               <Link
                 href="/account"
-                className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-all duration-200"
+                className="hidden sm:inline-flex p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-all duration-200"
                 aria-label="Account"
               >
                 <User className="w-5 h-5" />
@@ -231,6 +231,19 @@ export default function NavBar() {
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
                     className="px-4 py-3 text-lg font-medium text-foreground hover:bg-accent rounded-xl transition-colors duration-200"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+                {[
+                  { href: "/account/wishlist", label: "Wishlist" },
+                  { href: "/account", label: "Account" },
+                ].map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="sm:hidden px-4 py-3 text-lg font-medium text-foreground hover:bg-accent rounded-xl transition-colors duration-200"
                   >
                     {link.label}
                   </Link>

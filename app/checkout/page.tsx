@@ -60,7 +60,7 @@ export default function CheckoutPage() {
                   {i < currentStep ? <Check className="w-4 h-4" /> : i + 1}
                 </div>
                 <span
-                  className={`text-sm font-medium ${
+                  className={`text-xs sm:text-sm font-medium ${
                     i <= currentStep ? "text-foreground" : "text-muted-foreground"
                   }`}
                 >

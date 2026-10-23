@@ -128,6 +128,7 @@ export default function CartPage() {
                             <div className="flex items-center gap-1">
                               <button
                                 onClick={() => updateQuantity(i, -1)}
+                                aria-label={`Decrease quantity of ${item.product.name}`}
                                 className="w-8 h-8 rounded-lg border border-border flex items-center justify-center text-foreground hover:bg-accent transition-colors"
                               >
                                 <Minus className="w-3 h-3" />
@@ -137,6 +138,7 @@ export default function CartPage() {
                               </span>
                               <button
                                 onClick={() => updateQuantity(i, 1)}
+                                aria-label={`Increase quantity of ${item.product.name}`}
                                 className="w-8 h-8 rounded-lg border border-border flex items-center justify-center text-foreground hover:bg-accent transition-colors"
                               >
                                 <Plus className="w-3 h-3" />
@@ -144,6 +146,7 @@ export default function CartPage() {
                             </div>
                             <button
                               onClick={() => removeItem(i)}
+                              aria-label={`Remove ${item.product.name} from cart`}
                               className="p-2 text-muted-foreground hover:text-destructive transition-colors"
                             >
                               <Trash2 className="w-4 h-4" />
