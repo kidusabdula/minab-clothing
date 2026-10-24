@@ -24,7 +24,7 @@
     --ring: 0.52 0.18 32;
     --destructive: 0.55 0.22 27;
     --destructive-foreground: 0.98 0.003 80;
-    --success: 0.55 0.15 155;
+    --success: 0.5 0.13 155;
     --success-foreground: 0.98 0.003 80;
   }
 
@@ -32,12 +32,12 @@
     color-scheme: dark;
     --background: 0.16 0.005 60;
     --foreground: 0.92 0.003 80;
-    --primary: 0.62 0.2 32;
+    --primary: 0.66 0.19 32;
     --primary-foreground: 0.16 0.005 60;
     --secondary: 0.45 0.04 60;
     --secondary-foreground: 0.92 0.003 80;
     --muted: 0.22 0.005 60;
-    --muted-foreground: 0.6 0.01 75;
+    --muted-foreground: 0.66 0.01 75;
     --accent: 0.45 0.08 155;
     --accent-foreground: 0.92 0.003 80;
     --card: 0.2 0.006 60;
@@ -46,11 +46,11 @@
     --popover-foreground: 0.92 0.003 80;
     --border: 0.3 0.008 60;
     --input: 0.3 0.008 60;
-    --ring: 0.62 0.2 32;
-    --destructive: 0.45 0.22 27;
-    --destructive-foreground: 0.98 0.003 80;
-    --success: 0.45 0.18 155;
-    --success-foreground: 0.98 0.003 80;
+    --ring: 0.66 0.19 32;
+    --destructive: 0.68 0.18 27;
+    --destructive-foreground: 0.16 0.005 60;
+    --success: 0.72 0.16 155;
+    --success-foreground: 0.16 0.005 60;
   }
 }
 
