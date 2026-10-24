@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { MapPin } from "lucide-react";
 
@@ -38,23 +36,23 @@ export default function Footer() {
           </div>
 
           {Object.entries(footerLinks).map(([title, links]) => (
-            <div key={title}>
-              <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
+            <nav key={title} aria-label={`Footer ${title}`}>
+              <h2 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
                 {title}
-              </h4>
-              <ul className="space-y-3">
+              </h2>
+              <ul className="space-y-2">
                 {links.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                      className="inline-block py-0.5 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
                     >
                       {link.label}
                     </Link>
                   </li>
                 ))}
               </ul>
-            </div>
+            </nav>
           ))}
         </div>
 

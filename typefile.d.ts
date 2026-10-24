@@ -26,7 +26,6 @@ export interface Category {
   id: string;
   name: string;
   slug: string;
-  image: string;
   productCount: number;
 }
 
@@ -67,15 +66,5 @@ export interface Address {
   country: string;
   phone: string;
   isDefault: boolean;
-}
-
-export interface User {
-  id: string;
-  name: string;
-  email: string;
-  avatar?: string;
-  orders: Order[];
-  wishlist: string[];
-  addresses: Address[];
 }
 

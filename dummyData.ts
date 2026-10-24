@@ -1,13 +1,12 @@
 import { Product, Category, Collection, Order, Address } from "./typefile";
 
-export const collections: Collection[] = [
+const collectionSeeds: Omit<Collection, "productCount">[] = [
   {
     id: "1",
     name: "Summer Essence",
     slug: "summer-essence",
     description: "Light fabrics and breathable designs for the warm season.",
     image: "/IMG_6015.PNG",
-    productCount: 8,
   },
   {
     id: "2",
@@ -15,7 +14,6 @@ export const collections: Collection[] = [
     slug: "heritage-weave",
     description: "Traditional Ethiopian patterns reimagined for the modern wardrobe.",
     image: "/IMG_6018.PNG",
-    productCount: 6,
   },
   {
     id: "3",
@@ -23,7 +21,6 @@ export const collections: Collection[] = [
     slug: "urban-luxe",
     description: "Contemporary streetwear with a premium edge.",
     image: "/IMG_6017.PNG",
-    productCount: 7,
   },
   {
     id: "4",
@@ -31,17 +28,16 @@ export const collections: Collection[] = [
     slug: "evening-elegance",
     description: "Sophisticated pieces for special occasions.",
     image: "/IMG_6022.PNG",
-    productCount: 5,
   },
 ];
 
-export const categories: Category[] = [
-  { id: "1", name: "Dresses", slug: "dresses", image: "/IMG_6017.PNG", productCount: 6 },
-  { id: "2", name: "Tops", slug: "tops", image: "/IMG_6015.PNG", productCount: 8 },
-  { id: "3", name: "Outerwear", slug: "outerwear", image: "/IMG_6018.PNG", productCount: 4 },
-  { id: "4", name: "Accessories", slug: "accessories", image: "/IMG_6022.PNG", productCount: 5 },
-  { id: "5", name: "Footwear", slug: "footwear", image: "/IMG_4984.PNG", productCount: 3 },
-  { id: "6", name: "Traditional", slug: "traditional", image: "/IMG_4988.PNG", productCount: 4 },
+const categorySeeds: Omit<Category, "productCount">[] = [
+  { id: "1", name: "Dresses", slug: "dresses" },
+  { id: "2", name: "Tops", slug: "tops" },
+  { id: "3", name: "Outerwear", slug: "outerwear" },
+  { id: "4", name: "Accessories", slug: "accessories" },
+  { id: "5", name: "Footwear", slug: "footwear" },
+  { id: "6", name: "Traditional", slug: "traditional" },
 ];
 
 export const products: Product[] = [
@@ -323,6 +319,17 @@ export const products: Product[] = [
   },
 ];
 
+// Counts come from the catalogue itself, so the filters never promise more items than exist.
+export const collections: Collection[] = collectionSeeds.map((c) => ({
+  ...c,
+  productCount: products.filter((p) => p.collection === c.name).length,
+}));
+
+export const categories: Category[] = categorySeeds.map((c) => ({
+  ...c,
+  productCount: products.filter((p) => p.category === c.name).length,
+}));
+
 export const mockOrders: Order[] = [
   {
     id: "MIN-2026-001",
@@ -406,17 +413,7 @@ export const mockAddresses: Address[] = [
   },
 ];
 
-export const mockUser = {
-  id: "user-1",
-  name: "Demo Customer",
-  email: "demo@example.com",
-  avatar: undefined,
-  orders: mockOrders,
-  wishlist: ["1", "7", "11"],
-  addresses: mockAddresses,
-};
+export const wishlistIds = ["1", "7", "11"];
 
 export const featuredProducts = products.filter((p) => p.isFeatured);
 export const newArrivals = products.filter((p) => p.isNew);
-export const saleProducts = products.filter((p) => p.isSale);
-export const popularProducts = products.filter((p) => p.rating >= 4.7).slice(0, 6);
