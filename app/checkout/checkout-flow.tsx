@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, Check, CreditCard, MapPin, Shield } from "lucide-react";
 import { toast } from "sonner";
@@ -17,6 +17,7 @@ const paymentMethods = [
   { id: "telebirr", label: "Telebirr", icon: Shield },
 ];
 const NEW_ADDRESS = "new";
+const NEW_ADDRESS_FIELDS = ["name", "phone", "street", "city"];
 const { total } = cartTotals(sampleCart);
 
 /** A selectable card backed by a real radio input, so arrow keys and screen readers work. */
@@ -60,6 +61,20 @@ export default function CheckoutFlow() {
   // What the visitor typed for a new address, kept so the fields refill after "Back".
   const [newAddress, setNewAddress] = useState<Record<string, string>>({});
   const [paymentMethod, setPaymentMethod] = useState("card");
+
+  // Changing step removes the button that had focus, so focus moves to the new step's heading:
+  // keyboard and screen-reader users keep their place and hear which step they're on.
+  const stepHeading = useRef<HTMLHeadingElement>(null);
+  const stepChanged = useRef(false);
+  const goToStep = (step: number) => {
+    stepChanged.current = true;
+    setCurrentStep(step);
+  };
+  useEffect(() => {
+    if (!stepChanged.current) return;
+    stepChanged.current = false;
+    stepHeading.current?.focus();
+  }, [currentStep]);
 
   const saved = mockAddresses.find((a) => a.id === selectedAddress);
   const shipTo = saved
@@ -108,13 +123,15 @@ export default function CheckoutFlow() {
               onSubmit={(e) => {
                 e.preventDefault();
                 if (selectedAddress === NEW_ADDRESS) {
-                  const fields = Object.fromEntries(new FormData(e.currentTarget));
-                  setNewAddress(Object.fromEntries(Object.entries(fields).map(([k, v]) => [k, String(v)])));
+                  const form = new FormData(e.currentTarget);
+                  setNewAddress(Object.fromEntries(NEW_ADDRESS_FIELDS.map((k) => [k, String(form.get(k) ?? "")])));
                 }
-                setCurrentStep(1);
+                goToStep(1);
               }}
             >
-              <h2 className="text-xl font-bold text-foreground">Shipping Address</h2>
+              <h2 ref={stepHeading} tabIndex={-1} className="text-xl font-bold text-foreground">
+                Shipping Address
+              </h2>
               <fieldset className="space-y-4">
                 <legend className="sr-only">Ship to</legend>
                 {mockAddresses.map((addr) => (
@@ -172,7 +189,9 @@ export default function CheckoutFlow() {
 
           {currentStep === 1 && (
             <div className="enter-fade space-y-6">
-              <h2 className="text-xl font-bold text-foreground">Payment Method</h2>
+              <h2 ref={stepHeading} tabIndex={-1} className="text-xl font-bold text-foreground">
+                Payment Method
+              </h2>
               <fieldset className="space-y-4">
                 <legend className="sr-only">Payment method</legend>
                 {paymentMethods.map((method) => (
@@ -200,7 +219,9 @@ export default function CheckoutFlow() {
 
           {currentStep === 2 && (
             <div className="enter-fade space-y-6">
-              <h2 className="text-xl font-bold text-foreground">Review Order</h2>
+              <h2 ref={stepHeading} tabIndex={-1} className="text-xl font-bold text-foreground">
+                Review Order
+              </h2>
               <Card variant="glass">
                 <CardContent className="space-y-4">
                   {sampleCart.map((item) => (
@@ -241,7 +262,7 @@ export default function CheckoutFlow() {
 
           <div className="flex gap-3 mt-8">
             {currentStep > 0 && (
-              <Button variant="outline" onClick={() => setCurrentStep(currentStep - 1)}>
+              <Button variant="outline" onClick={() => goToStep(currentStep - 1)}>
                 <ArrowLeft aria-hidden="true" className="w-4 h-4" />
                 Back
               </Button>
@@ -253,7 +274,7 @@ export default function CheckoutFlow() {
               </Button>
             )}
             {currentStep === 1 && (
-              <Button className="flex-1" onClick={() => setCurrentStep(2)}>
+              <Button className="flex-1" onClick={() => goToStep(2)}>
                 Continue
                 <ArrowRight aria-hidden="true" className="w-4 h-4" />
               </Button>
