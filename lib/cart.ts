@@ -2,7 +2,7 @@ import type { CartItem } from "@/typefile";
 
 /** Sample pricing rules shared by the cart, the checkout and the sample orders. */
 export const FREE_SHIPPING_ABOVE = 3000;
-export const SHIPPING_FEE = 299;
+const SHIPPING_FEE = 299;
 export const DEMO_PROMO = { code: "MINAB20", rate: 0.2 };
 
 export function cartTotals(items: CartItem[], promoCode = "") {

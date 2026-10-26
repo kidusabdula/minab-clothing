@@ -37,8 +37,9 @@ function FilterGroup({ id, title, children }: { id: string; title: string; child
 const asShow = (filter: string | null): Show => (filter === "new" || filter === "sale" ? filter : "all");
 
 /**
- * The shop with its filters in sync with the URL: links such as /shop?filter=sale, Back and Forward
- * all set the "Show" filter, and picking one rewrites the query string without a reload.
+ * The shop with its "Show" filter in sync with the URL: links such as /shop?filter=sale, a reload and
+ * Back to such a link all set it. Picking one replaces the query string without a reload or a new
+ * history entry.
  * useSearchParams needs a Suspense boundary; the page renders <ShopBrowser /> as its fallback.
  */
 export default function ShopBrowserWithUrl() {
