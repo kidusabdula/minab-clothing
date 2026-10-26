@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Heart, ShoppingCart } from "lucide-react";
 import { toast } from "sonner";
+import { DEMO_CART, DEMO_WISHLIST } from "@/app/components/product/demo-notices";
 import { Button } from "@/app/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -68,9 +69,7 @@ export default function ProductOptions({ name, colors, sizes }: ProductOptionsPr
           size="lg"
           className="flex-1"
           onClick={() =>
-            toast.success(`${name} added to cart`, {
-              description: `Size: ${size}, Color: ${color}. Demo storefront: nothing is charged.`,
-            })
+            toast(`${name} (${color}, size ${size}) wasn't added to the cart`, { description: DEMO_CART })
           }
         >
           <ShoppingCart aria-hidden="true" className="w-5 h-5" />
@@ -81,7 +80,7 @@ export default function ProductOptions({ name, colors, sizes }: ProductOptionsPr
           size="lg"
           className="px-4"
           aria-label={`Add ${name} to wishlist`}
-          onClick={() => toast(`${name} saved to your wishlist`, { description: "Demo storefront: nothing is stored." })}
+          onClick={() => toast(`${name} wasn't saved to your wishlist`, { description: DEMO_WISHLIST })}
         >
           <Heart aria-hidden="true" className="w-5 h-5" />
         </Button>
