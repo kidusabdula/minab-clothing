@@ -11,11 +11,11 @@
 ## 🌟 Key Features
 
 ### Core Shopping Flow
-- **Product Catalog**: Filterable shop by category, collection, price range, new arrivals and sale items; the new and sale filter lives in the URL (`/shop?filter=new`, `/shop?filter=sale`), so links, Back and Forward set it
+- **Product Catalog**: Filterable shop by category, collection, price range, new arrivals and sale items; the new and sale filter lives in the URL (`/shop?filter=new`, `/shop?filter=sale`), so links, a reload and Back to such a link set it; picking a filter updates the URL without adding a history entry
 - **Product Detail Pages**: Full specifications, color/size selection, an image gallery
 - **Shopping Cart**: Starts from a sample cart, with quantity controls, a demo promo code and live totals; edits aren't saved
 - **3-Step Checkout**: Shipping (a saved or new address) → Payment → Review, ending on a "Demo Checkout Complete" page
-- **Mock E-Commerce Flow**: Fully functional UI demo flow from browse to purchase; the checkout takes no payment and asks for no card details
+- **Mock E-Commerce Flow**: A UI demo from browsing through a demo checkout; the checkout takes no payment and asks for no card details
 - **Demo Labelling**: Every page carries a visible "Demo storefront" label
 
 ### User Account Features (Sample Data)
@@ -46,9 +46,10 @@
 | Token | Light Mode | Dark Mode | Usage |
 |-------|-----------|-----------|-------|
 | **Primary** | Warm Terracotta | Light Terracotta | CTAs, links, badges, the focus ring |
-| **Secondary** | Deep Coffee Brown | Warm Taupe | Secondary buttons, section labels |
+| **Secondary** | Deep Coffee Brown | Warm Taupe | The "shipped" order badge |
 | **Accent** | Pale Sage | Deep Sage | Hover surfaces behind foreground text |
 | **Success** | Forest Green | Bright Green | Free-shipping and discount notes, delivered badge |
+| **Sage** | Sage | Deep Sage | Decorative glows in the hero and call to action, never behind text |
 | **Background** | Warm Cream | Deep Espresso | Page background |
 | **Card** | Pure White | Dark Espresso | Cards, panels, elevated surfaces |
 | **Muted** | Warm Sand | Dark Coffee | Subtle backgrounds, inactive states |
@@ -193,10 +194,10 @@ minab-clothing/
 
 ## 📊 E-Commerce Flow
 
-### Browse → Purchase
+### Browse → Demo Checkout
 1. **Home** → Discover featured products and collections
 2. **Shop** → Filter by category, collection, price; sort by featured/newest/price/rating
-3. **Product Detail** → View images, select color/size, read details, add to cart
+3. **Product Detail** → View images, select color/size, read details (Add to Cart says the demo cart is fixed)
 4. **Cart** → Adjust quantities, apply promo code (MINAB20), review totals
 5. **Checkout** → Pick a saved address or enter a new one, choose a payment method (demo only: nothing is charged), review the sample cart
 6. **Demo Checkout Complete** → No order is placed, nothing is charged and nothing is delivered
