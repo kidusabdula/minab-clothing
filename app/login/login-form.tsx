@@ -15,7 +15,7 @@ export default function LoginForm() {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        toast.success("Welcome back (demo login)", { description: "Redirecting to your account..." });
+        toast.success("Demo sign-in", { description: "Nothing was checked or stored. Opening the sample account..." });
         setTimeout(() => router.push("/account"), 1200);
       }}
       className="space-y-4"
