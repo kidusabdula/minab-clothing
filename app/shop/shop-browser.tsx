@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { SlidersHorizontal, X } from "lucide-react";
 import { ProductCard } from "@/app/components/product/product-card";
 import { Button } from "@/app/components/ui/button";
@@ -33,19 +34,31 @@ function FilterGroup({ id, title, children }: { id: string; title: string; child
   );
 }
 
-export default function ShopBrowser() {
-  const [show, setShow] = useState<Show>("all");
+const asShow = (filter: string | null): Show => (filter === "new" || filter === "sale" ? filter : "all");
+
+/**
+ * The shop with its filters in sync with the URL: links such as /shop?filter=sale, Back and Forward
+ * all set the "Show" filter, and picking one rewrites the query string without a reload.
+ * useSearchParams needs a Suspense boundary; the page renders <ShopBrowser /> as its fallback.
+ */
+export default function ShopBrowserWithUrl() {
+  const params = useSearchParams();
+  const changeShow = (next: Show) => {
+    const query = new URLSearchParams(params.toString());
+    if (next === "all") query.delete("filter");
+    else query.set("filter", next);
+    const qs = query.toString();
+    window.history.replaceState(null, "", qs ? `?${qs}` : window.location.pathname);
+  };
+  return <ShopBrowser show={asShow(params.get("filter"))} onShowChange={changeShow} />;
+}
+
+export function ShopBrowser({ show = "all", onShowChange }: { show?: Show; onShowChange?: (show: Show) => void }) {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedCollection, setSelectedCollection] = useState("");
   const [priceRange, setPriceRange] = useState<[number, number]>([0, PRICE_MAX]);
   const [sortBy, setSortBy] = useState("featured");
   const [showFilters, setShowFilters] = useState(false);
-
-  // Links such as /shop?filter=sale preselect a filter. Read after hydration so the page stays static.
-  useEffect(() => {
-    const filter = new URLSearchParams(window.location.search).get("filter");
-    if (filter === "new" || filter === "sale") setShow(filter);
-  }, []);
 
   const filteredProducts = useMemo(() => {
     let filtered = products.filter(
@@ -77,7 +90,7 @@ export default function ShopBrowser() {
     show !== "all" || !!selectedCategory || !!selectedCollection || priceRange[0] > 0 || priceRange[1] < PRICE_MAX;
 
   const clearFilters = () => {
-    setShow("all");
+    onShowChange?.("all");
     setSelectedCategory("");
     setSelectedCollection("");
     setPriceRange([0, PRICE_MAX]);
@@ -113,7 +126,7 @@ export default function ShopBrowser() {
                 key={value}
                 type="button"
                 aria-pressed={show === value}
-                onClick={() => setShow(value)}
+                onClick={() => onShowChange?.(value)}
                 className={optionClass(show === value)}
               >
                 {label}
