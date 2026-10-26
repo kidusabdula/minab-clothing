@@ -61,7 +61,7 @@ export default function AboutPage() {
 
             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden">
               <Image
-                src="/IMG_6017.PNG"
+                src="/catalog/navy-cargo-trousers.webp"
                 alt="Navy cargo trousers from the sample catalogue"
                 fill
                 priority

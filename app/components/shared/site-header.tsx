@@ -32,7 +32,7 @@ export default function SiteHeader() {
           <Link href="/" className="flex items-center gap-2 rounded-xl group/logo">
             <span className="relative w-10 h-10 overflow-hidden rounded-xl">
               <Image
-                src="/IMG_5026.PNG"
+                src="/brand/minab-mark.webp"
                 alt=""
                 width={40}
                 height={40}
