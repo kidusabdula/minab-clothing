@@ -6,21 +6,16 @@ import Image from "next/image";
 import { ArrowLeft, Minus, Plus, Trash2, ShoppingBag, ArrowRight, Truck } from "lucide-react";
 import { Button, buttonClasses } from "@/app/components/ui/button";
 import { Card, CardContent } from "@/app/components/ui/card";
-import { products } from "@/dummyData";
+import { sampleCart } from "@/dummyData";
+import { cartTotals, DEMO_PROMO } from "@/lib/cart";
 import { etb } from "@/lib/utils";
-import { CartItem } from "@/typefile";
-
-const initialCart: CartItem[] = [
-  { product: products[0], quantity: 1, size: "M", color: "Cream" },
-  { product: products[3], quantity: 1, size: "One Size", color: "Gold" },
-  { product: products[5], quantity: 2, size: "L", color: "Forest" },
-];
+import type { CartItem } from "@/typefile";
 
 const qtyButton =
   "w-8 h-8 rounded-lg border border-border flex items-center justify-center text-foreground hover:bg-accent transition-colors";
 
 export default function CartView() {
-  const [cartItems, setCartItems] = useState<CartItem[]>(initialCart);
+  const [cartItems, setCartItems] = useState<CartItem[]>(sampleCart);
   const [promoInput, setPromoInput] = useState("");
   const [promoCode, setPromoCode] = useState("");
 
@@ -30,10 +25,7 @@ export default function CartView() {
     );
   const removeItem = (index: number) => setCartItems((prev) => prev.filter((_, i) => i !== index));
 
-  const subtotal = cartItems.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
-  const shipping = subtotal > 3000 ? 0 : 299;
-  const discount = promoCode === "MINAB20" ? subtotal * 0.2 : 0;
-  const total = subtotal + shipping - discount;
+  const { subtotal, shipping, discount, total } = cartTotals(cartItems, promoCode);
 
   return (
     <>
@@ -145,12 +137,12 @@ export default function CartView() {
                   <div className="flex justify-between text-sm">
                     <dt className="text-muted-foreground">Shipping</dt>
                     <dd className="text-foreground font-medium">
-                      {shipping === 0 ? <span className="text-success font-medium">Free</span> : `ETB ${shipping}`}
+                      {shipping === 0 ? <span className="text-success font-medium">Free</span> : etb(shipping)}
                     </dd>
                   </div>
                   {discount > 0 && (
                     <div className="flex justify-between text-sm">
-                      <dt className="text-success">Discount (20%)</dt>
+                      <dt className="text-success">Discount ({DEMO_PROMO.rate * 100}%)</dt>
                       <dd className="text-success font-medium">-{etb(discount)}</dd>
                     </div>
                   )}
@@ -187,8 +179,8 @@ export default function CartView() {
                   </Button>
                 </form>
                 <p className="text-xs mt-2 min-h-4" role="status">
-                  {promoCode === "MINAB20" && <span className="text-success">20% discount applied!</span>}
-                  {promoCode && promoCode !== "MINAB20" && (
+                  {discount > 0 && <span className="text-success">{DEMO_PROMO.rate * 100}% discount applied!</span>}
+                  {promoCode && promoCode !== DEMO_PROMO.code && (
                     <span className="text-muted-foreground">That code isn&rsquo;t valid in this demo.</span>
                   )}
                 </p>
@@ -197,6 +189,9 @@ export default function CartView() {
                   Proceed to Checkout
                   <ArrowRight aria-hidden="true" className="w-5 h-5" />
                 </Link>
+                <p className="mt-3 text-xs text-muted-foreground text-center">
+                  Demo storefront: changes here aren&rsquo;t saved, so checkout reviews the sample cart.
+                </p>
               </CardContent>
             </Card>
           </div>

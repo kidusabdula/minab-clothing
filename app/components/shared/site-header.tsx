@@ -6,6 +6,7 @@ import NavLinks from "./nav-links";
 import SearchDialog from "./search-dialog";
 import ThemeToggle from "./theme-toggle";
 import MobileMenu from "./mobile-menu";
+import { sampleCart } from "@/dummyData";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -58,13 +59,13 @@ export default function SiteHeader() {
             <Link href="/account" className={`hidden sm:inline-flex ${iconButton}`} aria-label="Account">
               <User aria-hidden="true" className="w-5 h-5" />
             </Link>
-            <Link href="/cart" className={`relative ${iconButton}`} aria-label="Cart, 3 items">
+            <Link href="/cart" className={`relative ${iconButton}`} aria-label={`Cart, ${sampleCart.length} sample items`}>
               <ShoppingCart aria-hidden="true" className="w-5 h-5" />
               <span
                 aria-hidden="true"
                 className="absolute -top-0.5 -right-0.5 w-5 h-5 rounded-full bg-primary text-primary-foreground text-[10px] font-bold flex items-center justify-center"
               >
-                3
+                {sampleCart.length}
               </span>
             </Link>
             <MobileMenu links={navLinks} buttonClassName={`lg:hidden ${iconButton}`} />

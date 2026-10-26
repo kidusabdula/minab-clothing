@@ -8,19 +8,16 @@ import { Button } from "@/app/components/ui/button";
 import { Card, CardContent } from "@/app/components/ui/card";
 import { Input } from "@/app/components/ui/input";
 import { cn, etb } from "@/lib/utils";
-import { products, mockAddresses } from "@/dummyData";
+import { cartTotals, FREE_SHIPPING_ABOVE } from "@/lib/cart";
+import { mockAddresses, sampleCart } from "@/dummyData";
 
 const steps = ["Shipping", "Payment", "Review"];
 const paymentMethods = [
   { id: "card", label: "Credit / Debit Card", icon: CreditCard },
   { id: "telebirr", label: "Telebirr", icon: Shield },
 ];
-const cartMock = [
-  { product: products[0], quantity: 1, size: "M", color: "Cream" },
-  { product: products[3], quantity: 1, size: "One Size", color: "Gold" },
-];
-const subtotal = cartMock.reduce((s, i) => s + i.product.price * i.quantity, 0);
-const total = subtotal > 3000 ? subtotal : subtotal + 299;
+const NEW_ADDRESS = "new";
+const { total } = cartTotals(sampleCart);
 
 /** A selectable card backed by a real radio input, so arrow keys and screen readers work. */
 function RadioCard({
@@ -60,13 +57,18 @@ export default function CheckoutFlow() {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedAddress, setSelectedAddress] = useState<string | null>(null);
+  // What the visitor typed for a new address, kept so the fields refill after "Back".
+  const [newAddress, setNewAddress] = useState<Record<string, string>>({});
   const [paymentMethod, setPaymentMethod] = useState("card");
 
-  const handlePlaceOrder = () => {
-    toast.success("Demo order placed", {
-      description: "Nothing was charged. Redirecting to the demo confirmation...",
-    });
-    setTimeout(() => router.push("/checkout/success"), 1500);
+  const saved = mockAddresses.find((a) => a.id === selectedAddress);
+  const shipTo = saved
+    ? `${saved.street}, ${saved.city}`
+    : [newAddress.street, newAddress.city].filter(Boolean).join(", ");
+
+  const finishDemo = () => {
+    toast("Demo checkout complete", { description: "No order was placed and nothing was charged." });
+    router.push("/checkout/success");
   };
 
   return (
@@ -100,10 +102,21 @@ export default function CheckoutFlow() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
         <div className="lg:col-span-2">
           {currentStep === 0 && (
-            <div className="enter-fade space-y-6">
+            <form
+              id="shipping-step"
+              className="enter-fade space-y-6"
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (selectedAddress === NEW_ADDRESS) {
+                  const fields = Object.fromEntries(new FormData(e.currentTarget));
+                  setNewAddress(Object.fromEntries(Object.entries(fields).map(([k, v]) => [k, String(v)])));
+                }
+                setCurrentStep(1);
+              }}
+            >
               <h2 className="text-xl font-bold text-foreground">Shipping Address</h2>
               <fieldset className="space-y-4">
-                <legend className="sr-only">Saved addresses</legend>
+                <legend className="sr-only">Ship to</legend>
                 {mockAddresses.map((addr) => (
                   <RadioCard
                     key={addr.id}
@@ -128,22 +141,33 @@ export default function CheckoutFlow() {
                     </span>
                   </RadioCard>
                 ))}
+                <RadioCard
+                  name="address"
+                  value={NEW_ADDRESS}
+                  checked={selectedAddress === NEW_ADDRESS}
+                  onChange={setSelectedAddress}
+                >
+                  <span className="block font-semibold text-foreground">A new address</span>
+                  <span className="block text-sm text-muted-foreground mt-1">
+                    Used for this demo checkout only; nothing is saved.
+                  </span>
+                </RadioCard>
               </fieldset>
 
-              <Card variant="glass" className="p-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <Input label="Full Name" autoComplete="name" placeholder="Your name" />
-                  <Input label="Phone" type="tel" autoComplete="tel" placeholder="+251..." />
-                  <div className="sm:col-span-2">
-                    <Input label="Street Address" autoComplete="street-address" placeholder="Street" />
+              {selectedAddress === NEW_ADDRESS && (
+                <Card variant="glass" className="enter-fade p-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <Input label="Full Name" name="name" autoComplete="name" defaultValue={newAddress.name} required />
+                    <Input label="Phone" name="phone" type="tel" autoComplete="tel" placeholder="+251..." defaultValue={newAddress.phone} required />
+                    <div className="sm:col-span-2">
+                      <Input label="Street Address" name="street" autoComplete="street-address" defaultValue={newAddress.street} required />
+                    </div>
+                    <Input label="City" name="city" autoComplete="address-level2" defaultValue={newAddress.city} required />
+                    <Input label="Country" value="Ethiopia" disabled readOnly />
                   </div>
-                  <Input label="City" autoComplete="address-level2" placeholder="City" />
-                  <Input label="State" autoComplete="address-level1" placeholder="State" />
-                  <Input label="ZIP Code" autoComplete="postal-code" placeholder="ZIP" />
-                  <Input label="Country" value="Ethiopia" disabled readOnly />
-                </div>
-              </Card>
-            </div>
+                </Card>
+              )}
+            </form>
           )}
 
           {currentStep === 1 && (
@@ -179,7 +203,7 @@ export default function CheckoutFlow() {
               <h2 className="text-xl font-bold text-foreground">Review Order</h2>
               <Card variant="glass">
                 <CardContent className="space-y-4">
-                  {cartMock.map((item) => (
+                  {sampleCart.map((item) => (
                     <div key={item.product.id} className="flex justify-between gap-4 text-sm">
                       <div>
                         <p className="font-medium text-foreground">{item.product.name}</p>
@@ -202,16 +226,13 @@ export default function CheckoutFlow() {
 
               <div className="space-y-3">
                 <div className="flex items-center gap-2 text-sm">
-                  <MapPin aria-hidden="true" className="w-4 h-4 text-muted-foreground" />
-                  <span className="text-muted-foreground">
-                    Shipping to: {mockAddresses.find((a) => a.id === selectedAddress)?.street ?? mockAddresses[0].street},{" "}
-                    {mockAddresses[0].city}
-                  </span>
+                  <MapPin aria-hidden="true" className="w-4 h-4 shrink-0 text-muted-foreground" />
+                  <span className="text-muted-foreground">Shipping to: {shipTo}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
-                  <CreditCard aria-hidden="true" className="w-4 h-4 text-muted-foreground" />
+                  <CreditCard aria-hidden="true" className="w-4 h-4 shrink-0 text-muted-foreground" />
                   <span className="text-muted-foreground">
-                    Payment: {paymentMethod === "card" ? "Credit Card" : "Telebirr"}
+                    Payment: {paymentMethods.find((m) => m.id === paymentMethod)?.label}
                   </span>
                 </div>
               </div>
@@ -225,24 +246,27 @@ export default function CheckoutFlow() {
                 Back
               </Button>
             )}
-            {currentStep < 2 ? (
-              <Button
-                className="flex-1"
-                onClick={() => setCurrentStep(currentStep + 1)}
-                disabled={currentStep === 0 && !selectedAddress}
-              >
+            {currentStep === 0 && (
+              <Button type="submit" form="shipping-step" className="flex-1" disabled={!selectedAddress}>
                 Continue
                 <ArrowRight aria-hidden="true" className="w-4 h-4" />
               </Button>
-            ) : (
-              <Button className="flex-1" size="lg" onClick={handlePlaceOrder}>
+            )}
+            {currentStep === 1 && (
+              <Button className="flex-1" onClick={() => setCurrentStep(2)}>
+                Continue
+                <ArrowRight aria-hidden="true" className="w-4 h-4" />
+              </Button>
+            )}
+            {currentStep === 2 && (
+              <Button className="flex-1" size="lg" onClick={finishDemo}>
                 <Check aria-hidden="true" className="w-5 h-5" />
-                Place Order
+                Finish Demo Checkout
               </Button>
             )}
           </div>
           {currentStep === 0 && !selectedAddress && (
-            <p className="mt-3 text-sm text-muted-foreground">Choose a saved address to continue.</p>
+            <p className="mt-3 text-sm text-muted-foreground">Choose an address to continue.</p>
           )}
         </div>
 
@@ -251,7 +275,7 @@ export default function CheckoutFlow() {
             <CardContent>
               <h2 className="text-lg font-bold text-foreground mb-4">Your Order</h2>
               <div className="space-y-3 mb-6">
-                {cartMock.map((item) => (
+                {sampleCart.map((item) => (
                   <div key={item.product.id} className="flex justify-between gap-3 text-sm">
                     <span className="text-muted-foreground">
                       {item.product.name} x {item.quantity}
@@ -267,6 +291,9 @@ export default function CheckoutFlow() {
                 <span className="text-foreground">Total</span>
                 <span className="text-foreground">{etb(total)}</span>
               </div>
+              <p className="mt-4 text-xs text-muted-foreground">
+                The sample cart, with free shipping above {etb(FREE_SHIPPING_ABOVE)}.
+              </p>
             </CardContent>
           </Card>
         </aside>

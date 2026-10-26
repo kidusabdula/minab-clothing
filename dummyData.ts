@@ -1,4 +1,5 @@
-import { Product, Category, Collection, Order, Address } from "./typefile";
+import type { Product, Category, Collection, Order, Address, CartItem } from "./typefile";
+import { cartTotals } from "./lib/cart";
 
 const collectionSeeds: Omit<Collection, "productCount">[] = [
   {
@@ -318,25 +319,16 @@ export const categories: Category[] = categorySeeds.map((c) => ({
   productCount: products.filter((p) => p.category === c.name).length,
 }));
 
-export const mockOrders: Order[] = [
+type SampleOrder = Omit<Order, "total">;
+
+const orderSeeds: SampleOrder[] = [
   {
     id: "MIN-2026-001",
     date: "2026-04-28",
     status: "delivered",
-    total: 5099.98,
     items: [
-      {
-        product: products[0],
-        quantity: 1,
-        size: "M",
-        color: "Cream",
-      },
-      {
-        product: products[3],
-        quantity: 1,
-        size: "One Size",
-        color: "Gold",
-      },
+      { product: products[0], quantity: 1, size: "M", color: "Cream" },
+      { product: products[3], quantity: 1, size: "One Size", color: "Gold" },
     ],
     trackingNumber: "ET-2847-9921",
   },
@@ -344,31 +336,25 @@ export const mockOrders: Order[] = [
     id: "MIN-2026-002",
     date: "2026-05-01",
     status: "shipped",
-    total: 1899.99,
-    items: [
-      {
-        product: products[5],
-        quantity: 1,
-        size: "L",
-        color: "Forest",
-      },
-    ],
+    items: [{ product: products[5], quantity: 1, size: "L", color: "Forest" }],
     trackingNumber: "ET-2847-8845",
   },
   {
     id: "MIN-2026-003",
     date: "2026-05-04",
     status: "processing",
-    total: 2899.99,
-    items: [
-      {
-        product: products[0],
-        quantity: 1,
-        size: "S",
-        color: "Navy",
-      },
-    ],
+    items: [{ product: products[0], quantity: 1, size: "S", color: "Navy" }],
   },
+];
+
+// Totals follow the same shipping rule as the cart and checkout.
+export const mockOrders: Order[] = orderSeeds.map((o) => ({ ...o, total: cartTotals(o.items).total }));
+
+/** The sample cart: the cart page starts from it and the demo checkout reviews it. */
+export const sampleCart: CartItem[] = [
+  { product: products[0], quantity: 1, size: "M", color: "Cream" },
+  { product: products[3], quantity: 1, size: "One Size", color: "Gold" },
+  { product: products[5], quantity: 2, size: "L", color: "Forest" },
 ];
 
 export const mockAddresses: Address[] = [

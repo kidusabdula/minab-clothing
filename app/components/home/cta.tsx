@@ -1,11 +1,13 @@
 import { Truck, Shield, RefreshCw, Gift } from "lucide-react";
 import NewsletterForm from "./newsletter-form";
+import { FREE_SHIPPING_ABOVE } from "@/lib/cart";
+import { etb } from "@/lib/utils";
 
 const features = [
   {
     icon: Truck,
     title: "Free Shipping",
-    description: "On orders above ETB 3,000. Delivered to your doorstep within 3-5 business days.",
+    description: `On orders above ${etb(FREE_SHIPPING_ABOVE)}. Delivered to your doorstep within 3-5 business days.`,
   },
   {
     icon: Shield,
