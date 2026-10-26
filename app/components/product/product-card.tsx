@@ -17,7 +17,8 @@ interface ProductCardProps {
 
 export function ProductCard({ product, sizes = GRID_SIZES, priority = false }: ProductCardProps) {
   return (
-    <article className="reveal group relative">
+    // The ring is drawn on the card: the name link stretches over it, and the clamped heading would clip a ring on the link.
+    <article className="reveal group relative rounded-2xl has-[a:focus-visible]:outline has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-4 has-[a:focus-visible]:outline-ring">
       <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-muted/50">
         <Image
           src={product.image}
@@ -39,7 +40,10 @@ export function ProductCard({ product, sizes = GRID_SIZES, priority = false }: P
         <Rating value={product.rating} count={product.reviewCount} />
         <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors duration-200 line-clamp-1">
           {/* The link's ::after covers the whole card, so the image and text are one target. */}
-          <Link href={`/shop/${product.slug}`} className="after:absolute after:inset-0 after:rounded-2xl">
+          <Link
+            href={`/shop/${product.slug}`}
+            className="after:absolute after:inset-0 after:rounded-2xl focus-visible:outline-none"
+          >
             {product.name}
           </Link>
         </h3>
