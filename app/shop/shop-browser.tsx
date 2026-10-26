@@ -246,7 +246,7 @@ export function ShopBrowser({ show = "all", onShowChange }: { show?: Show; onSho
         ) : (
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {filteredProducts.map((product, i) => (
-              <ProductCard key={product.id} product={product} sizes={SHOP_SIZES} priority={i === 0} />
+              <ProductCard key={product.id} product={product} sizes={SHOP_SIZES} priority={i === 0} headingLevel={2} />
             ))}
           </div>
         )}

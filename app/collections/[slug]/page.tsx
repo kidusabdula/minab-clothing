@@ -43,7 +43,7 @@ export default async function CollectionPage({ params }: Params) {
         {items.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
             {items.map((product, i) => (
-              <ProductCard key={product.id} product={product} priority={i === 0} />
+              <ProductCard key={product.id} product={product} priority={i === 0} headingLevel={2} />
             ))}
           </div>
         ) : (

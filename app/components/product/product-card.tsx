@@ -13,9 +13,12 @@ interface ProductCardProps {
   product: Product;
   sizes?: string;
   priority?: boolean;
+  /** 2 where the grid is the page's main content under its h1; 3 inside a section with its own h2. */
+  headingLevel?: 2 | 3;
 }
 
-export function ProductCard({ product, sizes = GRID_SIZES, priority = false }: ProductCardProps) {
+export function ProductCard({ product, sizes = GRID_SIZES, priority = false, headingLevel = 3 }: ProductCardProps) {
+  const Heading = headingLevel === 2 ? "h2" : "h3";
   return (
     // The ring is drawn on the card: the name link stretches over it, and the clamped heading would clip a ring on the link.
     <article className="reveal group relative rounded-2xl has-[a:focus-visible]:outline has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-4 has-[a:focus-visible]:outline-ring">
@@ -38,7 +41,7 @@ export function ProductCard({ product, sizes = GRID_SIZES, priority = false }: P
 
       <div className="mt-4 space-y-1.5">
         <Rating value={product.rating} count={product.reviewCount} />
-        <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors duration-200 line-clamp-1">
+        <Heading className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors duration-200 line-clamp-1">
           {/* The link's ::after covers the whole card, so the image and text are one target. */}
           <Link
             href={`/shop/${product.slug}`}
@@ -46,7 +49,7 @@ export function ProductCard({ product, sizes = GRID_SIZES, priority = false }: P
           >
             {product.name}
           </Link>
-        </h3>
+        </Heading>
         <p className="text-xs text-muted-foreground">{product.category}</p>
         <div className="flex items-center gap-2">
           <span className="text-sm font-bold text-foreground">{etb(product.price)}</span>
