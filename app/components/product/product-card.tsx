@@ -42,7 +42,7 @@ export function ProductCard({ product, sizes = GRID_SIZES, priority = false }: P
           {/* The link's ::after covers the whole card, so the image and text are one target. */}
           <Link
             href={`/shop/${product.slug}`}
-            className="after:absolute after:inset-0 after:rounded-2xl focus-visible:outline-none"
+            className="after:absolute after:inset-0 after:rounded-2xl supports-[selector(:has(a))]:focus-visible:outline-none"
           >
             {product.name}
           </Link>
