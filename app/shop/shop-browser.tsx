@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { SlidersHorizontal, X } from "lucide-react";
 import { ProductCard } from "@/app/components/product/product-card";
@@ -37,24 +37,23 @@ function FilterGroup({ id, title, children }: { id: string; title: string; child
 const asShow = (filter: string | null): Show => (filter === "new" || filter === "sale" ? filter : "all");
 
 /**
- * The shop with its "Show" filter in sync with the URL: links such as /shop?filter=sale, a reload and
- * Back to such a link all set it. Picking one replaces the query string without a reload or a new
- * history entry.
- * useSearchParams needs a Suspense boundary; the page renders <ShopBrowser /> as its fallback.
+ * Reports the URL's ?filter= value whenever it changes. useSearchParams makes everything inside its
+ * Suspense boundary render on the client only, so this renders nothing and sits in its own boundary:
+ * the product grid stays in the prerendered HTML and hydrates in place.
  */
-export default function ShopBrowserWithUrl() {
-  const params = useSearchParams();
-  const changeShow = (next: Show) => {
-    const query = new URLSearchParams(params.toString());
-    if (next === "all") query.delete("filter");
-    else query.set("filter", next);
-    const qs = query.toString();
-    window.history.replaceState(null, "", qs ? `?${qs}` : window.location.pathname);
-  };
-  return <ShopBrowser show={asShow(params.get("filter"))} onShowChange={changeShow} />;
+function FilterFromUrl({ onChange }: { onChange: (show: Show) => void }) {
+  const filter = asShow(useSearchParams().get("filter"));
+  useEffect(() => onChange(filter), [filter, onChange]);
+  return null;
 }
 
-export function ShopBrowser({ show = "all", onShowChange }: { show?: Show; onShowChange?: (show: Show) => void }) {
+/**
+ * The shop, with its "Show" filter in sync with the URL: links such as /shop?filter=sale, a reload and
+ * Back to such a link all set it. Picking one replaces the query string without a reload or a new
+ * history entry.
+ */
+export default function ShopBrowser() {
+  const [show, setShow] = useState<Show>("all");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedCollection, setSelectedCollection] = useState("");
   const [priceRange, setPriceRange] = useState<[number, number]>([0, PRICE_MAX]);
@@ -90,8 +89,17 @@ export function ShopBrowser({ show = "all", onShowChange }: { show?: Show; onSho
   const hasFilters =
     show !== "all" || !!selectedCategory || !!selectedCollection || priceRange[0] > 0 || priceRange[1] < PRICE_MAX;
 
+  const changeShow = (next: Show) => {
+    setShow(next);
+    const query = new URLSearchParams(window.location.search);
+    if (next === "all") query.delete("filter");
+    else query.set("filter", next);
+    const qs = query.toString();
+    window.history.replaceState(null, "", qs ? `?${qs}` : window.location.pathname);
+  };
+
   const clearFilters = () => {
-    onShowChange?.("all");
+    changeShow("all");
     setSelectedCategory("");
     setSelectedCollection("");
     setPriceRange([0, PRICE_MAX]);
@@ -99,6 +107,9 @@ export function ShopBrowser({ show = "all", onShowChange }: { show?: Show; onSho
 
   return (
     <div className="flex flex-col lg:flex-row gap-8">
+      <Suspense fallback={null}>
+        <FilterFromUrl onChange={setShow} />
+      </Suspense>
       <button
         type="button"
         onClick={() => setShowFilters(!showFilters)}
@@ -127,7 +138,7 @@ export function ShopBrowser({ show = "all", onShowChange }: { show?: Show; onSho
                 key={value}
                 type="button"
                 aria-pressed={show === value}
-                onClick={() => onShowChange?.(value)}
+                onClick={() => changeShow(value)}
                 className={optionClass(show === value)}
               >
                 {label}

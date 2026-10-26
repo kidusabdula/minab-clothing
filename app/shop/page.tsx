@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
-import ShopBrowserWithUrl, { ShopBrowser } from "./shop-browser";
+import ShopBrowser from "./shop-browser";
 
 export const metadata: Metadata = {
   title: "Shop",
@@ -17,9 +16,7 @@ export default function ShopPage() {
             Discover our complete collection of premium Ethiopian fashion.
           </p>
         </div>
-        <Suspense fallback={<ShopBrowser />}>
-          <ShopBrowserWithUrl />
-        </Suspense>
+        <ShopBrowser />
       </div>
     </main>
   );
