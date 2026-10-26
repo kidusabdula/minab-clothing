@@ -22,7 +22,7 @@ const faqs = [
   },
   {
     q: "How do I find the right size?",
-    a: "Each product page includes a detailed size guide. Our sizing follows international standards. If you're between sizes, we recommend sizing up for a relaxed fit or down for a tailored look.",
+    a: "Each product page lists the sizes it comes in. If you're between sizes, we recommend sizing up for a relaxed fit or down for a tailored look.",
   },
   {
     q: "Are your products ethically made?",
@@ -50,8 +50,8 @@ export default function FAQPage() {
           <h1 className="text-4xl sm:text-5xl font-bold text-foreground">FAQ</h1>
           <p className="text-muted-foreground mt-2 text-lg">Everything you need to know about Minab.</p>
           <p className="mt-4 rounded-xl border border-border bg-muted/50 px-4 py-3 text-sm text-muted-foreground">
-            Demo copy: the shipping, returns and payment policies below are sample text for this
-            storefront demo, not the label&rsquo;s real policies.
+            Demo copy: every answer below is sample text for this storefront demo, not the
+            label&rsquo;s real policies or practices.
           </p>
         </div>
 
@@ -79,7 +79,7 @@ export default function FAQPage() {
         <div className="text-center mt-12">
           <p className="text-muted-foreground">Still have questions?</p>
           <Link href="/contact" className="inline-block py-1 text-primary font-medium hover:underline">
-            Contact our support team
+            Contact us
           </Link>
         </div>
       </div>
