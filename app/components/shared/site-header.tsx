@@ -7,7 +7,7 @@ import SearchDialog from "./search-dialog";
 import ThemeToggle from "./theme-toggle";
 import MobileMenu from "./mobile-menu";
 
-export const navLinks = [
+const navLinks = [
   { href: "/", label: "Home" },
   { href: "/shop", label: "Shop" },
   { href: "/collections", label: "Collections" },
@@ -15,7 +15,7 @@ export const navLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
-export const iconButton =
+const iconButton =
   "inline-flex items-center justify-center p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors duration-200";
 
 export default function SiteHeader() {

@@ -7,7 +7,7 @@ import { etb } from "@/lib/utils";
 import ProductCardActions from "./product-card-actions";
 
 /** Image sizes for the four-column product grid (two columns on phones). */
-export const GRID_SIZES = "(min-width: 1280px) 286px, (min-width: 1024px) 23vw, (min-width: 768px) 32vw, 50vw";
+const GRID_SIZES = "(min-width: 1280px) 286px, (min-width: 1024px) 23vw, (min-width: 768px) 32vw, 50vw";
 
 interface ProductCardProps {
   product: Product;

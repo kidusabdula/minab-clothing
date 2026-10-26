@@ -2,14 +2,13 @@ import { cn } from "@/lib/utils";
 
 interface BadgeProps {
   children: React.ReactNode;
-  variant?: "default" | "secondary" | "outline" | "success" | "destructive";
+  variant?: "default" | "secondary" | "success" | "destructive";
   className?: string;
 }
 
 const variants = {
   default: "bg-primary text-primary-foreground",
   secondary: "bg-secondary text-secondary-foreground",
-  outline: "border border-border text-foreground",
   success: "bg-success text-success-foreground",
   destructive: "bg-destructive text-destructive-foreground",
 };

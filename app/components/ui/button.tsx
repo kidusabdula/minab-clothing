@@ -1,16 +1,13 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-type ButtonVariant = "default" | "secondary" | "outline" | "ghost" | "destructive" | "link";
+type ButtonVariant = "default" | "outline" | "ghost";
 type ButtonSize = "sm" | "md" | "lg";
 
 const variants: Record<ButtonVariant, string> = {
   default: "bg-primary text-primary-foreground hover:opacity-90 shadow-sm",
-  secondary: "bg-secondary text-secondary-foreground hover:opacity-80",
   outline: "border border-input bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground",
   ghost: "text-foreground hover:bg-accent hover:text-accent-foreground",
-  destructive: "bg-destructive text-destructive-foreground hover:opacity-90",
-  link: "text-primary underline-offset-4 hover:underline",
 };
 
 const sizes: Record<ButtonSize, string> = {

@@ -13,7 +13,6 @@ export interface Product {
   sizes: string[];
   details: string;
   care: string;
-  inStock: boolean;
   rating: number;
   reviewCount: number;
   isNew: boolean;
@@ -52,7 +51,6 @@ export interface Order {
   items: CartItem[];
   total: number;
   trackingNumber?: string;
-  estimatedDelivery: string;
 }
 
 export interface Address {
