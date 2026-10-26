@@ -49,6 +49,8 @@ const config: Config = {
           DEFAULT: "oklch(var(--success) / <alpha-value>)",
           foreground: "oklch(var(--success-foreground) / <alpha-value>)",
         },
+        // Decorative tint only (background glows); never behind text.
+        sage: "oklch(var(--sage) / <alpha-value>)",
       },
       animation: {
         float: "float 6s ease-in-out infinite",

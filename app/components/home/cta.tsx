@@ -32,7 +32,7 @@ export function CTA() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="glass-strong rounded-3xl p-8 sm:p-12 lg:p-16 overflow-hidden relative">
           <div aria-hidden="true" className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-          <div aria-hidden="true" className="absolute bottom-0 left-0 w-48 h-48 bg-accent/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+          <div aria-hidden="true" className="absolute bottom-0 left-0 w-48 h-48 bg-sage/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
           <div className="relative">
             <h2 className="sr-only">Sample Store Policies</h2>
