@@ -65,7 +65,7 @@ export default function AddressesPage() {
                       size="sm"
                       message={NOT_SAVED}
                       aria-label={`Remove ${addr.label} address`}
-                      className="text-destructive hover:text-destructive"
+                      className="text-destructive hover:text-destructive hover:bg-destructive/10"
                     >
                       <Trash2 aria-hidden="true" className="w-3 h-3" /> Remove
                     </DemoAction>
