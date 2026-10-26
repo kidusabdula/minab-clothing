@@ -1,10 +1,15 @@
 # Architectural DNA — Master Repertoire
 
 > **Author:** Kidus Abdula  
-> **Title:** Lead Senior Software Engineer & Systems Architect  
+> **Title:** Backend & Full-Stack Engineer  
 > **Version:** 1.0.0  
 > **Last Updated:** April 2026  
 > **Classification:** Professional — Reusable Reference
+
+> **In this repository:** this is a general reference shared across projects. The Minab storefront demo departs
+> from its default stack: Tailwind CSS 3.4, CSS-only motion instead of Framer Motion, plain React state instead of
+> TanStack Query, React Hook Form and Zod, small custom primitives instead of Radix UI, and mock data
+> (`dummyData.ts`) instead of an API. The [README](./README.md) describes what the code does.
 
 ---
 
