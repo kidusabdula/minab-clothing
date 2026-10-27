@@ -1,47 +1,44 @@
-import { Product, Category, Collection, Order, Address } from "./typefile";
+import type { Product, Category, Collection, Order, Address, CartItem } from "./typefile";
+import { cartTotals } from "./lib/cart";
 
-export const collections: Collection[] = [
+const collectionSeeds: Omit<Collection, "productCount">[] = [
   {
     id: "1",
     name: "Summer Essence",
     slug: "summer-essence",
     description: "Light fabrics and breathable designs for the warm season.",
-    image: "/IMG_6015.PNG",
-    productCount: 8,
+    image: "/catalog/olive-cargo-trousers.webp",
   },
   {
     id: "2",
     name: "Heritage Weave",
     slug: "heritage-weave",
     description: "Traditional Ethiopian patterns reimagined for the modern wardrobe.",
-    image: "/IMG_6018.PNG",
-    productCount: 6,
+    image: "/catalog/olive-jacket.webp",
   },
   {
     id: "3",
     name: "Urban Luxe",
     slug: "urban-luxe",
     description: "Contemporary streetwear with a premium edge.",
-    image: "/IMG_6017.PNG",
-    productCount: 7,
+    image: "/catalog/navy-cargo-trousers.webp",
   },
   {
     id: "4",
     name: "Evening Elegance",
     slug: "evening-elegance",
     description: "Sophisticated pieces for special occasions.",
-    image: "/IMG_6022.PNG",
-    productCount: 5,
+    image: "/catalog/navy-jacket.webp",
   },
 ];
 
-export const categories: Category[] = [
-  { id: "1", name: "Dresses", slug: "dresses", image: "/IMG_6017.PNG", productCount: 6 },
-  { id: "2", name: "Tops", slug: "tops", image: "/IMG_6015.PNG", productCount: 8 },
-  { id: "3", name: "Outerwear", slug: "outerwear", image: "/IMG_6018.PNG", productCount: 4 },
-  { id: "4", name: "Accessories", slug: "accessories", image: "/IMG_6022.PNG", productCount: 5 },
-  { id: "5", name: "Footwear", slug: "footwear", image: "/IMG_4984.PNG", productCount: 3 },
-  { id: "6", name: "Traditional", slug: "traditional", image: "/IMG_4988.PNG", productCount: 4 },
+const categorySeeds: Omit<Category, "productCount">[] = [
+  { id: "1", name: "Dresses", slug: "dresses" },
+  { id: "2", name: "Tops", slug: "tops" },
+  { id: "3", name: "Outerwear", slug: "outerwear" },
+  { id: "4", name: "Accessories", slug: "accessories" },
+  { id: "5", name: "Footwear", slug: "footwear" },
+  { id: "6", name: "Traditional", slug: "traditional" },
 ];
 
 export const products: Product[] = [
@@ -49,8 +46,8 @@ export const products: Product[] = [
     id: "1",
     name: "Addis Ababa Midi Dress",
     slug: "addis-ababa-midi-dress",
-    image: "/IMG_6017.PNG",
-    images: ["/IMG_6017.PNG", "/IMG_6015.PNG", "/IMG_6018.PNG"],
+    image: "/catalog/navy-cargo-trousers.webp",
+    images: ["/catalog/navy-cargo-trousers.webp", "/catalog/olive-cargo-trousers.webp", "/catalog/olive-jacket.webp"],
     category: "Dresses",
     collection: "Heritage Weave",
     price: 2899.99,
@@ -60,7 +57,6 @@ export const products: Product[] = [
     sizes: ["XS", "S", "M", "L", "XL"],
     details: "A stunning midi dress featuring handwoven Ethiopian tibeb patterns along the hemline. The breathable cotton-silk blend drapes elegantly, while the fitted bodice and flared skirt create a timeless silhouette. Perfect for weddings, graduations, and cultural celebrations.",
     care: "Dry clean recommended. Iron on low heat.",
-    inStock: true,
     rating: 4.8,
     reviewCount: 124,
     isNew: true,
@@ -72,8 +68,8 @@ export const products: Product[] = [
     id: "2",
     name: "Lalibela Linen Shirt",
     slug: "lalibela-linen-shirt",
-    image: "/IMG_6015.PNG",
-    images: ["/IMG_6015.PNG", "/IMG_6018.PNG"],
+    image: "/catalog/olive-cargo-trousers.webp",
+    images: ["/catalog/olive-cargo-trousers.webp", "/catalog/olive-jacket.webp"],
     category: "Tops",
     collection: "Summer Essence",
     price: 1599.99,
@@ -83,7 +79,6 @@ export const products: Product[] = [
     sizes: ["S", "M", "L", "XL", "XXL"],
     details: "An effortlessly elegant button-down crafted from premium Ethiopian linen. The relaxed fit and natural texture make it ideal for both casual and semi-formal occasions. Features mother-of-pearl buttons and a curved hem.",
     care: "Machine wash cold. Tumble dry low. Iron on medium heat.",
-    inStock: true,
     rating: 4.6,
     reviewCount: 89,
     isNew: false,
@@ -95,8 +90,8 @@ export const products: Product[] = [
     id: "3",
     name: "Entoto Leather Jacket",
     slug: "entoto-leather-jacket",
-    image: "/IMG_6018.PNG",
-    images: ["/IMG_6018.PNG", "/IMG_6022.PNG"],
+    image: "/catalog/olive-jacket.webp",
+    images: ["/catalog/olive-jacket.webp", "/catalog/navy-jacket.webp"],
     category: "Outerwear",
     collection: "Urban Luxe",
     price: 4999.99,
@@ -106,7 +101,6 @@ export const products: Product[] = [
     sizes: ["S", "M", "L", "XL"],
     details: "A masterclass in leather craftsmanship. This jacket is hand-cut from full-grain Ethiopian leather with a buttery soft finish. Features brass hardware, a silk lining, and adjustable waist tabs. Each piece develops a unique patina over time.",
     care: "Professional leather clean only.",
-    inStock: true,
     rating: 4.9,
     reviewCount: 67,
     isNew: true,
@@ -118,8 +112,8 @@ export const products: Product[] = [
     id: "4",
     name: "Sheba Silk Scarf",
     slug: "sheba-silk-scarf",
-    image: "/IMG_6022.PNG",
-    images: ["/IMG_6022.PNG", "/IMG_6015.PNG"],
+    image: "/catalog/navy-jacket.webp",
+    images: ["/catalog/navy-jacket.webp", "/catalog/olive-cargo-trousers.webp"],
     category: "Accessories",
     collection: "Evening Elegance",
     price: 899.99,
@@ -129,7 +123,6 @@ export const products: Product[] = [
     sizes: ["One Size"],
     details: "Hand-rolled silk scarf inspired by the ancient Queen of Sheba. The habotai silk has a luminous sheen and drapes weightlessly. Features hand-painted accents and a subtle metallic thread border.",
     care: "Dry clean only. Store flat.",
-    inStock: true,
     rating: 4.7,
     reviewCount: 43,
     isNew: false,
@@ -141,8 +134,8 @@ export const products: Product[] = [
     id: "5",
     name: "Merkato Market Tote",
     slug: "merkato-market-tote",
-    image: "/IMG_4984.PNG",
-    images: ["/IMG_4984.PNG", "/IMG_4988.PNG"],
+    image: "/brand/minab-wordmark.webp",
+    images: ["/brand/minab-wordmark.webp", "/brand/minab-mark-white.webp"],
     category: "Accessories",
     collection: "Urban Luxe",
     price: 1299.99,
@@ -152,7 +145,6 @@ export const products: Product[] = [
     sizes: ["Standard", "Oversized"],
     details: "Named after Africa's largest open-air market, this tote combines utility with artistry. The canvas is handwoven by artisans in Addis Ababa. Features reinforced leather handles, an interior zip pocket, and a magnetic closure.",
     care: "Spot clean. Condition leather straps regularly.",
-    inStock: true,
     rating: 4.5,
     reviewCount: 112,
     isNew: false,
@@ -164,8 +156,8 @@ export const products: Product[] = [
     id: "6",
     name: "Bale Mountain Hoodie",
     slug: "bale-mountain-hoodie",
-    image: "/IMG_6015.PNG",
-    images: ["/IMG_6015.PNG", "/IMG_6018.PNG"],
+    image: "/catalog/olive-cargo-trousers.webp",
+    images: ["/catalog/olive-cargo-trousers.webp", "/catalog/olive-jacket.webp"],
     category: "Tops",
     collection: "Urban Luxe",
     price: 1899.99,
@@ -175,7 +167,6 @@ export const products: Product[] = [
     sizes: ["S", "M", "L", "XL", "XXL"],
     details: "Inspired by the misty peaks of Bale National Park. This heavyweight hoodie is cut from organic cotton French terry that's been garment-washed for incredible softness. Features a double-lined hood, ribbed cuffs, and a kangaroo pocket.",
     care: "Machine wash cold. Tumble dry low. Do not bleach.",
-    inStock: true,
     rating: 4.7,
     reviewCount: 156,
     isNew: false,
@@ -187,8 +178,8 @@ export const products: Product[] = [
     id: "7",
     name: "Habesha Kemis Gown",
     slug: "habesha-kemis-gown",
-    image: "/IMG_4988.PNG",
-    images: ["/IMG_4988.PNG", "/IMG_6017.PNG"],
+    image: "/brand/minab-mark-white.webp",
+    images: ["/brand/minab-mark-white.webp", "/catalog/navy-cargo-trousers.webp"],
     category: "Traditional",
     collection: "Heritage Weave",
     price: 5999.99,
@@ -198,7 +189,6 @@ export const products: Product[] = [
     sizes: ["Custom"],
     details: "A modern interpretation of the classic Habesha Kemis. Each gown takes 3 weeks to hand-weave by master artisans. Features intricate metallic thread embroidery along the neckline, cuffs, and hem. Made to measure for the perfect fit.",
     care: "Professional cleaning recommended. Store in garment bag.",
-    inStock: true,
     rating: 5.0,
     reviewCount: 38,
     isNew: false,
@@ -210,8 +200,8 @@ export const products: Product[] = [
     id: "8",
     name: "Axum Leather Sandals",
     slug: "axum-leather-sandals",
-    image: "/IMG_6018.PNG",
-    images: ["/IMG_6018.PNG", "/IMG_4984.PNG"],
+    image: "/catalog/olive-jacket.webp",
+    images: ["/catalog/olive-jacket.webp", "/brand/minab-wordmark.webp"],
     category: "Footwear",
     collection: "Summer Essence",
     price: 1799.99,
@@ -221,7 +211,6 @@ export const products: Product[] = [
     sizes: ["38", "39", "40", "41", "42", "43", "44"],
     details: "Handcrafted sandals using traditional leather-working techniques from the ancient city of Axum. The vegetable-tanned leather molds to your foot over time, while the rubber sole provides modern comfort and grip.",
     care: "Wipe clean. Condition leather monthly.",
-    inStock: true,
     rating: 4.6,
     reviewCount: 94,
     isNew: true,
@@ -233,8 +222,8 @@ export const products: Product[] = [
     id: "9",
     name: "Rift Valley Wrap Top",
     slug: "rift-valley-wrap-top",
-    image: "/IMG_6017.PNG",
-    images: ["/IMG_6017.PNG", "/IMG_6015.PNG"],
+    image: "/catalog/navy-cargo-trousers.webp",
+    images: ["/catalog/navy-cargo-trousers.webp", "/catalog/olive-cargo-trousers.webp"],
     category: "Tops",
     collection: "Summer Essence",
     price: 1199.99,
@@ -244,7 +233,6 @@ export const products: Product[] = [
     sizes: ["XS", "S", "M", "L"],
     details: "A fluid wrap top inspired by the Great Rift Valley's layered landscapes. The eco-friendly lyocell-modal blend drapes like silk but is machine washable. Features an adjustable wrap closure and subtle puff sleeves.",
     care: "Machine wash cold, gentle cycle. Lay flat to dry.",
-    inStock: true,
     rating: 4.4,
     reviewCount: 71,
     isNew: false,
@@ -256,8 +244,8 @@ export const products: Product[] = [
     id: "10",
     name: "Simien Cargo Pants",
     slug: "simien-cargo-pants",
-    image: "/IMG_6018.PNG",
-    images: ["/IMG_6018.PNG", "/IMG_6022.PNG"],
+    image: "/catalog/olive-jacket.webp",
+    images: ["/catalog/olive-jacket.webp", "/catalog/navy-jacket.webp"],
     category: "Tops",
     collection: "Urban Luxe",
     price: 2299.99,
@@ -267,7 +255,6 @@ export const products: Product[] = [
     sizes: ["XS", "S", "M", "L", "XL"],
     details: "Utility meets style. These cargo pants are cut from durable cotton twill with a hint of stretch for all-day comfort. Features multiple oversized pockets, an adjustable waistband, and a tapered leg with elasticated cuffs.",
     care: "Machine wash cold. Tumble dry low.",
-    inStock: true,
     rating: 4.5,
     reviewCount: 83,
     isNew: false,
@@ -279,8 +266,8 @@ export const products: Product[] = [
     id: "11",
     name: "Tana Floral Maxi Dress",
     slug: "tana-floral-maxi-dress",
-    image: "/IMG_6017.PNG",
-    images: ["/IMG_6017.PNG", "/IMG_6022.PNG"],
+    image: "/catalog/navy-cargo-trousers.webp",
+    images: ["/catalog/navy-cargo-trousers.webp", "/catalog/navy-jacket.webp"],
     category: "Dresses",
     collection: "Summer Essence",
     price: 2199.99,
@@ -290,7 +277,6 @@ export const products: Product[] = [
     sizes: ["XS", "S", "M", "L", "XL"],
     details: "Inspired by Lake Tana's water lilies. This maxi dress features a hand-painted floral print on organic cotton voile. The tiered skirt, smocked bodice, and flutter sleeves create an ethereal, romantic silhouette.",
     care: "Hand wash cold. Line dry. Iron on low heat.",
-    inStock: true,
     rating: 4.8,
     reviewCount: 145,
     isNew: true,
@@ -302,8 +288,8 @@ export const products: Product[] = [
     id: "12",
     name: "Gondar Wool Blazer",
     slug: "gondar-wool-blazer",
-    image: "/IMG_6018.PNG",
-    images: ["/IMG_6018.PNG", "/IMG_6022.PNG"],
+    image: "/catalog/olive-jacket.webp",
+    images: ["/catalog/olive-jacket.webp", "/catalog/navy-jacket.webp"],
     category: "Outerwear",
     collection: "Evening Elegance",
     price: 4499.99,
@@ -313,7 +299,6 @@ export const products: Product[] = [
     sizes: ["S", "M", "L", "XL", "XXL"],
     details: "Tailored perfection from Gondar's textile heritage. This single-breasted blazer is cut from a premium Ethiopian merino wool blend with a half-canvas construction. Features notch lapels, working cuff buttons, and a ticket pocket.",
     care: "Dry clean only.",
-    inStock: true,
     rating: 4.9,
     reviewCount: 52,
     isNew: false,
@@ -323,60 +308,53 @@ export const products: Product[] = [
   },
 ];
 
-export const mockOrders: Order[] = [
+// Counts come from the catalogue itself, so the filters never promise more items than exist.
+export const collections: Collection[] = collectionSeeds.map((c) => ({
+  ...c,
+  productCount: products.filter((p) => p.collection === c.name).length,
+}));
+
+export const categories: Category[] = categorySeeds.map((c) => ({
+  ...c,
+  productCount: products.filter((p) => p.category === c.name).length,
+}));
+
+type SampleOrder = Omit<Order, "total">;
+
+const orderSeeds: SampleOrder[] = [
   {
     id: "MIN-2026-001",
     date: "2026-04-28",
     status: "delivered",
-    total: 5099.98,
     items: [
-      {
-        product: products[0],
-        quantity: 1,
-        size: "M",
-        color: "Cream",
-      },
-      {
-        product: products[3],
-        quantity: 1,
-        size: "One Size",
-        color: "Gold",
-      },
+      { product: products[0], quantity: 1, size: "M", color: "Cream" },
+      { product: products[3], quantity: 1, size: "One Size", color: "Gold" },
     ],
     trackingNumber: "ET-2847-9921",
-    estimatedDelivery: "2026-05-03",
   },
   {
     id: "MIN-2026-002",
     date: "2026-05-01",
     status: "shipped",
-    total: 1899.99,
-    items: [
-      {
-        product: products[5],
-        quantity: 1,
-        size: "L",
-        color: "Forest",
-      },
-    ],
+    items: [{ product: products[5], quantity: 1, size: "L", color: "Forest" }],
     trackingNumber: "ET-2847-8845",
-    estimatedDelivery: "2026-05-07",
   },
   {
     id: "MIN-2026-003",
     date: "2026-05-04",
     status: "processing",
-    total: 2899.99,
-    items: [
-      {
-        product: products[0],
-        quantity: 1,
-        size: "S",
-        color: "Navy",
-      },
-    ],
-    estimatedDelivery: "2026-05-10",
+    items: [{ product: products[0], quantity: 1, size: "S", color: "Navy" }],
   },
+];
+
+// Totals follow the same shipping rule as the cart and checkout.
+export const mockOrders: Order[] = orderSeeds.map((o) => ({ ...o, total: cartTotals(o.items).total }));
+
+/** The sample cart: the cart page starts from it and the demo checkout reviews it. */
+export const sampleCart: CartItem[] = [
+  { product: products[0], quantity: 1, size: "M", color: "Cream" },
+  { product: products[3], quantity: 1, size: "One Size", color: "Gold" },
+  { product: products[5], quantity: 2, size: "L", color: "Forest" },
 ];
 
 export const mockAddresses: Address[] = [
@@ -406,17 +384,7 @@ export const mockAddresses: Address[] = [
   },
 ];
 
-export const mockUser = {
-  id: "user-1",
-  name: "Demo Customer",
-  email: "demo@example.com",
-  avatar: undefined,
-  orders: mockOrders,
-  wishlist: ["1", "7", "11"],
-  addresses: mockAddresses,
-};
+export const wishlistIds = ["1", "7", "11"];
 
 export const featuredProducts = products.filter((p) => p.isFeatured);
 export const newArrivals = products.filter((p) => p.isNew);
-export const saleProducts = products.filter((p) => p.isSale);
-export const popularProducts = products.filter((p) => p.rating >= 4.7).slice(0, 6);

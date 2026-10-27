@@ -1,12 +1,13 @@
-"use client";
-
-import { motion } from "framer-motion";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Leaf, Users, Award, Heart } from "lucide-react";
-import NavBar from "@/app/components/shared/navbar";
-import Footer from "@/app/components/shared/footer";
-import { Button } from "@/app/components/ui/button";
+import { buttonClasses } from "@/app/components/ui/button";
+
+export const metadata: Metadata = {
+  title: "About",
+  description: "Sample brand story and values written for the Minab storefront demo.",
+};
 
 const values = [
   {
@@ -33,108 +34,74 @@ const values = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen">
-      <NavBar />
-      <main>
-        <section className="pt-24 pb-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
-                <span className="text-sm font-semibold text-primary uppercase tracking-wider">
-                  Our Story
-                </span>
-                <h1 className="text-4xl sm:text-5xl font-bold text-foreground mt-3">
-                  Weaving Ethiopia&rsquo;s Future, One Thread at a Time
-                </h1>
-                <p className="text-muted-foreground mt-6 leading-relaxed text-lg">
-                  Minab was born in the heart of Addis Ababa with a simple mission: to bring
-                  Ethiopian craftsmanship to the global stage. What started as a small workshop has grown into a movement — connecting traditional artisans with contemporary
-                  design, creating pieces that honor heritage while embracing the future.
-                </p>
-                <p className="text-muted-foreground mt-4 leading-relaxed">
-                  Every garment we create represents the
-                  coming together of master weavers, dyers, tailors, and designers, each
-                  contributing their expertise to a shared vision of excellence.
-                </p>
-                <p className="mt-6 rounded-xl border border-border bg-muted/50 px-4 py-3 text-sm text-muted-foreground">
-                  Sample copy written for this demo storefront. It isn&rsquo;t the label&rsquo;s own
-                  story, and it makes no claims about the real brand.
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="relative aspect-[4/5] rounded-3xl overflow-hidden"
-              >
-                <Image
-                  src="/IMG_6017.PNG"
-                  alt="Minab Atelier"
-                  fill
-                  className="object-cover"
-                  sizes="50vw"
-                />
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 sm:py-24 bg-muted/30">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl sm:text-4xl font-bold text-foreground">Our Values</h2>
-            </motion.div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {values.map((v, i) => (
-                <motion.div
-                  key={v.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="glass rounded-2xl p-6 text-center"
-                >
-                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <v.icon className="w-7 h-7 text-primary" />
-                  </div>
-                  <h3 className="text-lg font-bold text-foreground">{v.title}</h3>
-                  <p className="text-sm text-muted-foreground mt-3 leading-relaxed">{v.text}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-                Ready to Explore?
-              </h2>
-              <p className="text-muted-foreground mt-3 text-lg max-w-md mx-auto">
-                Discover our latest collection, crafted with passion and heritage.
+    <main id="main" className="flex-1">
+      <section className="pt-24 pb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="enter-fade-up">
+              <p className="text-sm font-semibold text-primary uppercase tracking-wider">Our Story</p>
+              <h1 className="text-4xl sm:text-5xl font-bold text-foreground mt-3">
+                Weaving Ethiopia&rsquo;s Future, One Thread at a Time
+              </h1>
+              <p className="text-muted-foreground mt-6 leading-relaxed text-lg">
+                Minab was born in the heart of Addis Ababa with a simple mission: to bring
+                Ethiopian craftsmanship to the global stage. What started as a small workshop has grown into a movement — connecting traditional artisans with contemporary
+                design, creating pieces that honor heritage while embracing the future.
               </p>
-              <Link href="/shop" className="mt-8 inline-block">
-                <Button size="lg">
-                  Shop Now
-                  <ArrowRight className="w-5 h-5" />
-                </Button>
-              </Link>
-            </motion.div>
+              <p className="text-muted-foreground mt-4 leading-relaxed">
+                Every garment we create represents the
+                coming together of master weavers, dyers, tailors, and designers, each
+                contributing their expertise to a shared vision of excellence.
+              </p>
+              <p className="mt-6 rounded-xl border border-border bg-muted/50 px-4 py-3 text-sm text-muted-foreground">
+                Sample copy written for this demo storefront. It isn&rsquo;t the label&rsquo;s own
+                story, and it makes no claims about the real brand.
+              </p>
+            </div>
+
+            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden">
+              <Image
+                src="/catalog/navy-cargo-trousers.webp"
+                alt="Navy cargo trousers from the sample catalogue"
+                fill
+                priority
+                className="object-cover"
+                sizes="(min-width: 1280px) 584px, (min-width: 1024px) 45vw, 92vw"
+              />
+            </div>
           </div>
-        </section>
-      </main>
-      <Footer />
-    </div>
+        </div>
+      </section>
+
+      <section className="py-16 sm:py-24 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="reveal text-center mb-12 text-3xl sm:text-4xl font-bold text-foreground">Our Values</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {values.map((v) => (
+              <div key={v.title} className="reveal glass rounded-2xl p-6 text-center">
+                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <v.icon aria-hidden="true" className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="text-lg font-bold text-foreground">{v.title}</h3>
+                <p className="text-sm text-muted-foreground mt-3 leading-relaxed">{v.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24">
+        <div className="reveal max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground">Ready to Explore?</h2>
+          <p className="text-muted-foreground mt-3 text-lg max-w-md mx-auto">
+            Discover our latest collection, crafted with passion and heritage.
+          </p>
+          <Link href="/shop" className={buttonClasses({ size: "lg", className: "mt-8" })}>
+            Shop Now
+            <ArrowRight aria-hidden="true" className="w-5 h-5" />
+          </Link>
+        </div>
+      </section>
+    </main>
   );
 }

@@ -1,22 +1,19 @@
-"use client";
-
 import { cn } from "@/lib/utils";
 
 interface BadgeProps {
   children: React.ReactNode;
-  variant?: "default" | "secondary" | "outline" | "success" | "destructive";
+  variant?: "default" | "secondary" | "success" | "destructive";
   className?: string;
 }
 
-function Badge({ children, variant = "default", className }: BadgeProps) {
-  const variants = {
-    default: "bg-primary text-primary-foreground",
-    secondary: "bg-secondary text-secondary-foreground",
-    outline: "border border-border text-foreground",
-    success: "bg-success text-success-foreground",
-    destructive: "bg-destructive text-destructive-foreground",
-  };
+const variants = {
+  default: "bg-primary text-primary-foreground",
+  secondary: "bg-secondary text-secondary-foreground",
+  success: "bg-success text-success-foreground",
+  destructive: "bg-destructive text-destructive-foreground",
+};
 
+export function Badge({ children, variant = "default", className }: BadgeProps) {
   return (
     <span
       className={cn(
@@ -29,5 +26,3 @@ function Badge({ children, variant = "default", className }: BadgeProps) {
     </span>
   );
 }
-
-export { Badge };
