@@ -76,9 +76,6 @@ export default function ShopBrowser() {
       case "price-high":
         filtered.sort((a, b) => b.price - a.price);
         break;
-      case "rating":
-        filtered.sort((a, b) => b.rating - a.rating);
-        break;
       case "newest":
         filtered = filtered.filter((p) => p.isNew).concat(filtered.filter((p) => !p.isNew));
         break;
@@ -243,7 +240,6 @@ export default function ShopBrowser() {
             <option value="newest">Newest</option>
             <option value="price-low">Price: Low to High</option>
             <option value="price-high">Price: High to Low</option>
-            <option value="rating">Highest Rated</option>
           </select>
         </div>
 

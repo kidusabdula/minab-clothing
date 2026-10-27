@@ -5,7 +5,6 @@ import { ArrowLeft } from "lucide-react";
 import { products } from "@/dummyData";
 import { Badge } from "@/app/components/ui/badge";
 import { ProductCard } from "@/app/components/product/product-card";
-import Rating from "@/app/components/product/rating";
 import ProductGallery from "./product-gallery";
 import { etb } from "@/lib/utils";
 import ProductOptions from "./product-options";
@@ -63,10 +62,6 @@ export default async function ProductPage({ params }: Params) {
           <div className="enter-fade-up [animation-delay:100ms] lg:sticky lg:top-24 self-start">
             <p className="text-sm text-primary font-medium">{product.category}</p>
             <h1 className="text-3xl sm:text-4xl font-bold text-foreground mt-2">{product.name}</h1>
-
-            <div className="mt-4">
-              <Rating value={product.rating} count={product.reviewCount} size="md" />
-            </div>
 
             <div className="flex flex-wrap items-baseline gap-3 mt-6">
               <span className="text-3xl font-bold text-foreground">{etb(product.price)}</span>
