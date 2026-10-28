@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { Product } from "@/typefile";
 import { Badge } from "../ui/badge";
-import Rating from "./rating";
 import { etb } from "@/lib/utils";
 import ProductCardActions from "./product-card-actions";
 
@@ -40,7 +39,6 @@ export function ProductCard({ product, sizes = GRID_SIZES, priority = false, hea
       </div>
 
       <div className="mt-4 space-y-1.5">
-        <Rating value={product.rating} count={product.reviewCount} />
         <Heading className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors duration-200 line-clamp-1">
           {/* The link's ::after covers the whole card, so the image and text are one target. */}
           <Link

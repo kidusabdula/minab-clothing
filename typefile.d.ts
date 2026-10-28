@@ -13,8 +13,6 @@ export interface Product {
   sizes: string[];
   details: string;
   care: string;
-  rating: number;
-  reviewCount: number;
   isNew: boolean;
   isSale: boolean;
   isFeatured: boolean;

@@ -76,7 +76,7 @@ app/
 ├── components/
 │   ├── ui/               # Primitives (Button, Card, Input, Badge)
 │   ├── shared/           # Site header and its islands (search, menu, theme toggle), footer, DemoAction
-│   ├── product/          # ProductCard, its action buttons, Rating, the demo notices
+│   ├── product/          # ProductCard, its action buttons, the demo notices
 │   └── home/             # Home page sections (Hero, Collections, CTA, newsletter form)
 ├── account/              # Customer account area
 │   ├── orders/           # Order history
@@ -196,7 +196,7 @@ minab-clothing/
 
 ### Browse → Demo Checkout
 1. **Home** → Discover featured products and collections
-2. **Shop** → Filter by category, collection, price; sort by featured/newest/price/rating
+2. **Shop** → Filter by category, collection, price; sort by featured/newest/price
 3. **Product Detail** → View images, select color/size, read details (Add to Cart says the demo cart is fixed)
 4. **Cart** → Adjust quantities, apply promo code (MINAB20), review totals
 5. **Checkout** → Pick a saved address or enter a new one, choose a payment method (demo only: nothing is charged), review the sample cart
@@ -255,7 +255,7 @@ This project is proprietary software developed by Kidus Abdula. All rights reser
 
 ## 🏢 About
 
-Minab is a clothing label from Addis Ababa. This web app is a storefront demo built around the brand: products, orders, reviews and contact details are mock data (`dummyData.ts`).
+Minab is a clothing label from Addis Ababa. This web app is a storefront demo built around the brand: products, orders and contact details are mock data (`dummyData.ts`).
 
 ### Demo Contact Details
 - The email, phone number and address shown in the app are placeholders, not Minab's real contact details.
